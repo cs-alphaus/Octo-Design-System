@@ -19,7 +19,7 @@
           <v-row class="calendar-container">
             <!-- Left side: Calendar views -->
             <v-col cols="8" class="pr-0">
-              <!-- Date input dropdowns -->
+              <!-- Date input fields -->
               <v-row class="mb-6" no-gutters>
                 <v-col cols="6" class="pr-3">
                   <v-text-field
@@ -28,7 +28,6 @@
                     variant="outlined"
                     density="compact"
                     readonly
-                    append-inner-icon="mdi-chevron-down"
                     class="date-input"
                   />
                 </v-col>
@@ -39,7 +38,6 @@
                     variant="outlined"
                     density="compact"
                     readonly
-                    append-inner-icon="mdi-chevron-down"
                     class="date-input"
                   />
                 </v-col>
