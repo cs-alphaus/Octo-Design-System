@@ -1,5 +1,7 @@
 // Component index - exports all components
 export { default as Button } from './Button/Button.vue'
+export { default as Calendar } from './Calendar/Calendar.vue'
+export { default as CalendarDual } from './Calendar/CalendarDual.vue'
 export { default as Dialog } from './Dialog/Dialog.vue'
 export { default as Avatar } from './Avatar.vue'
 export { default as CopyButton } from './CopyButton.vue'
