@@ -390,7 +390,11 @@ import { allColors, lightThemeColors, darkThemeColors, extraColors, vendorColors
 
 // Color swatch component
 const ColorSwatch = {
-  props: ['color', 'label', 'isMain'],
+  props: {
+    color: String,
+    label: String,
+    isMain: Boolean
+  },
   emits: ['copy'],
   template: `
     <div
@@ -419,9 +423,9 @@ const ColorSwatch = {
     },
     async copyColor() {
       try {
-        await navigator.clipboard.writeText(this.color)
+        await navigator.clipboard.writeText((this as any).color)
         if (window.showNotification) {
-          window.showNotification(`Copied ${this.color}`)
+          window.showNotification(`Copied ${(this as any).color}`)
         }
       } catch (err) {
         console.error('Failed to copy:', err)

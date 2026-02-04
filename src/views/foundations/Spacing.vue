@@ -166,7 +166,7 @@ const dynamicSpacing = formatToPx(someValue) // Ensures px unit
           <div
             class="demo-box"
             :style="{
-              padding: spacing[demoSpacing],
+              padding: (spacing as any)[demoSpacing],
               backgroundColor: 'rgba(var(--v-theme-primary), 0.1)',
               border: '2px solid rgb(var(--v-theme-primary))',
               borderRadius: '8px'
@@ -175,7 +175,7 @@ const dynamicSpacing = formatToPx(someValue) // Ensures px unit
             <div class="text-center">
               <div class="text-h6 mb-2">Demo Box</div>
               <div class="text-body-2">
-                Padding: <strong>{{ spacing[demoSpacing] }}</strong>
+                Padding: <strong>{{ (spacing as any)[demoSpacing] }}</strong>
               </div>
             </div>
           </div>
