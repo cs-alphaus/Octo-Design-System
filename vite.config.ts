@@ -9,5 +9,11 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  // GitHub Pages deployment configuration
+  base: process.env.NODE_ENV === 'production' ? '/octo-design-system/' : '/',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets'
   }
 })
