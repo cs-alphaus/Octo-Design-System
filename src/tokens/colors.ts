@@ -130,7 +130,7 @@ export const getColorHex = (colorName: string, theme: string): string => {
 
   const colors = theme === 'light' ? lightColors : darkColors
 
-  if (colorName in colors) return colors[colorName]
+  if (colorName in colors) return (colors as Record<string, string>)[colorName]
   else return ''
 }
 

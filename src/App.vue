@@ -67,7 +67,7 @@
 
         <v-list-item
           v-for="item in resourceItems"
-          :key="item.path"
+          :key="item.title"
           :title="item.title"
           :prepend-icon="item.icon"
           class="mb-1 rounded-lg"
@@ -75,19 +75,6 @@
           @click="item.action"
         />
 
-        <!-- Components Section -->
-        <v-list-subheader class="text-uppercase text-caption font-weight-bold text-medium-emphasis mb-2 mt-6">
-          Components
-        </v-list-subheader>
-
-        <v-list-item
-          v-for="item in componentItems"
-          :key="item.path"
-          :to="item.path"
-          :title="item.title"
-          class="mb-1 rounded-lg"
-          color="primary"
-        />
       </v-list>
     </v-navigation-drawer>
 
@@ -123,7 +110,13 @@ const foundationsItems = [
   { title: 'Spacing', path: '/foundations/spacing' }
 ]
 
-const resourceItems = [
+interface ResourceItem {
+  title: string
+  icon: string
+  action: () => Window | null
+}
+
+const resourceItems: ResourceItem[] = [
   {
     title: 'Octo UI Repository',
     icon: 'mdi-github',
@@ -131,30 +124,19 @@ const resourceItems = [
   }
 ]
 
-const componentItems = [
-  { title: 'Avatar', path: '/components/avatar' },
-  { title: 'Breadcrumbs', path: '/components/breadcrumbs' },
-  { title: 'Button', path: '/components/button' },
-  { title: 'Calendar', path: '/components/calendar' },
-  { title: 'Chip', path: '/components/chip' },
-  { title: 'Color Card', path: '/components/color-card' },
-  { title: 'Copy Button', path: '/components/copy-button' },
-  { title: 'Dialog', path: '/components/dialog' },
-  { title: 'Empty State', path: '/components/empty-state' },
-  { title: 'Icon Button', path: '/components/icon-button' },
-  { title: 'Info Card', path: '/components/info-card' },
-  { title: 'Label Value', path: '/components/label-value' },
-  { title: 'Loading Overlay', path: '/components/loading-overlay' },
-  { title: 'Menu', path: '/components/menu' },
-  { title: 'Search Input', path: '/components/search-input' },
-  { title: 'Title', path: '/components/title' }
-]
+const componentItems: { title: string; path: string }[] = []
 
 const toggleTheme = () => {
   theme.global.name.value = isDark.value ? 'light' : 'dark'
 }
 
 // Global notification function
+declare global {
+  interface Window {
+    showNotification: (message: string) => void
+  }
+}
+
 window.showNotification = (message: string) => {
   snackbarText.value = message
   snackbar.value = true
