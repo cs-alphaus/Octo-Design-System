@@ -57,7 +57,8 @@
       <p class="text-body-2 mb-4 text-medium-emphasis">
         Demonstration of different selection and active states for list items.
       </p>
-      <v-card>
+      <!-- Live Example -->
+      <v-card class="mb-4">
         <v-card-text>
           <v-list>
             <CustomListItem
@@ -69,13 +70,31 @@
               @click="handleClick"
             />
             <CustomListItem
-              :config="normalStateConfig"
-              @click="handleClick"
-            /><CustomListItem
-              :config="normalStateConfig"
+              :config="selectedStateConfig"
               @click="handleClick"
             />
           </v-list>
+        </v-card-text>
+      </v-card>
+
+      <!-- Code Section -->
+      <v-card>
+        <v-card-text class="pa-0">
+          <v-btn
+            @click="showActiveStatesCode = !showActiveStatesCode"
+            variant="text"
+            prepend-icon="mdi-code-tags"
+            class="ma-4"
+          >
+            {{ showActiveStatesCode ? 'Hide code' : 'Show code' }}
+          </v-btn>
+
+          <v-expand-transition>
+            <div v-if="showActiveStatesCode">
+              <v-divider />
+              <pre class="pa-4 text-caption code-block" v-html="highlightedActiveStatesCode"></pre>
+            </div>
+          </v-expand-transition>
         </v-card-text>
       </v-card>
     </div>
@@ -83,7 +102,12 @@
     <!-- Basic Example -->
     <div class="mb-8">
       <h2 class="text-h5 font-weight-medium mb-4">Basic Example</h2>
-      <v-card>
+      <p class="text-body-2 mb-4 text-medium-emphasis">
+        Minimal configuration with just title and subtitle.
+      </p>
+
+      <!-- Live Example -->
+      <v-card class="mb-4">
         <v-card-text>
           <v-list>
             <CustomListItem
@@ -93,12 +117,38 @@
           </v-list>
         </v-card-text>
       </v-card>
+
+      <!-- Code Section -->
+      <v-card>
+        <v-card-text class="pa-0">
+          <v-btn
+            @click="showBasicCode = !showBasicCode"
+            variant="text"
+            prepend-icon="mdi-code-tags"
+            class="ma-4"
+          >
+            {{ showBasicCode ? 'Hide code' : 'Show code' }}
+          </v-btn>
+
+          <v-expand-transition>
+            <div v-if="showBasicCode">
+              <v-divider />
+              <pre class="pa-4 text-caption code-block" v-html="highlightedBasicCode"></pre>
+            </div>
+          </v-expand-transition>
+        </v-card-text>
+      </v-card>
     </div>
 
     <!-- With Avatar -->
     <div class="mb-8">
       <h2 class="text-h5 font-weight-medium mb-4">With Avatar</h2>
-      <v-card>
+      <p class="text-body-2 mb-4 text-medium-emphasis">
+        Adding user avatar with initials and color customization.
+      </p>
+
+      <!-- Live Example -->
+      <v-card class="mb-4">
         <v-card-text>
           <v-list>
             <CustomListItem
@@ -108,12 +158,38 @@
           </v-list>
         </v-card-text>
       </v-card>
+
+      <!-- Code Section -->
+      <v-card>
+        <v-card-text class="pa-0">
+          <v-btn
+            @click="showAvatarCode = !showAvatarCode"
+            variant="text"
+            prepend-icon="mdi-code-tags"
+            class="ma-4"
+          >
+            {{ showAvatarCode ? 'Hide code' : 'Show code' }}
+          </v-btn>
+
+          <v-expand-transition>
+            <div v-if="showAvatarCode">
+              <v-divider />
+              <pre class="pa-4 text-caption code-block" v-html="highlightedAvatarCode"></pre>
+            </div>
+          </v-expand-transition>
+        </v-card-text>
+      </v-card>
     </div>
 
     <!-- With Status Chips -->
     <div class="mb-8">
       <h2 class="text-h5 font-weight-medium mb-4">With Status Chips</h2>
-      <v-card>
+      <p class="text-body-2 mb-4 text-medium-emphasis">
+        Adding status chips on the right side with color and variant options.
+      </p>
+
+      <!-- Live Example -->
+      <v-card class="mb-4">
         <v-card-text>
           <v-list>
             <CustomListItem
@@ -123,12 +199,38 @@
           </v-list>
         </v-card-text>
       </v-card>
+
+      <!-- Code Section -->
+      <v-card>
+        <v-card-text class="pa-0">
+          <v-btn
+            @click="showChipCode = !showChipCode"
+            variant="text"
+            prepend-icon="mdi-code-tags"
+            class="ma-4"
+          >
+            {{ showChipCode ? 'Hide code' : 'Show code' }}
+          </v-btn>
+
+          <v-expand-transition>
+            <div v-if="showChipCode">
+              <v-divider />
+              <pre class="pa-4 text-caption code-block" v-html="highlightedChipCode"></pre>
+            </div>
+          </v-expand-transition>
+        </v-card-text>
+      </v-card>
     </div>
 
     <!-- With Metadata -->
     <div class="mb-8">
       <h2 class="text-h5 font-weight-medium mb-4">With Metadata</h2>
-      <v-card>
+      <p class="text-body-2 mb-4 text-medium-emphasis">
+        Adding tertiary metadata line below the subtitle with dot-separated items.
+      </p>
+
+      <!-- Live Example -->
+      <v-card class="mb-4">
         <v-card-text>
           <v-list>
             <CustomListItem
@@ -138,12 +240,38 @@
           </v-list>
         </v-card-text>
       </v-card>
+
+      <!-- Code Section -->
+      <v-card>
+        <v-card-text class="pa-0">
+          <v-btn
+            @click="showMetadataCode = !showMetadataCode"
+            variant="text"
+            prepend-icon="mdi-code-tags"
+            class="ma-4"
+          >
+            {{ showMetadataCode ? 'Hide code' : 'Show code' }}
+          </v-btn>
+
+          <v-expand-transition>
+            <div v-if="showMetadataCode">
+              <v-divider />
+              <pre class="pa-4 text-caption code-block" v-html="highlightedMetadataCode"></pre>
+            </div>
+          </v-expand-transition>
+        </v-card-text>
+      </v-card>
     </div>
 
     <!-- With Action Menu -->
     <div class="mb-8">
       <h2 class="text-h5 font-weight-medium mb-4">With Action Menu</h2>
-      <v-card>
+      <p class="text-body-2 mb-4 text-medium-emphasis">
+        Adding a dropdown action menu with customizable actions and icons.
+      </p>
+
+      <!-- Live Example -->
+      <v-card class="mb-4">
         <v-card-text>
           <v-list>
             <CustomListItem
@@ -154,12 +282,38 @@
           </v-list>
         </v-card-text>
       </v-card>
+
+      <!-- Code Section -->
+      <v-card>
+        <v-card-text class="pa-0">
+          <v-btn
+            @click="showMenuCode = !showMenuCode"
+            variant="text"
+            prepend-icon="mdi-code-tags"
+            class="ma-4"
+          >
+            {{ showMenuCode ? 'Hide code' : 'Show code' }}
+          </v-btn>
+
+          <v-expand-transition>
+            <div v-if="showMenuCode">
+              <v-divider />
+              <pre class="pa-4 text-caption code-block" v-html="highlightedMenuCode"></pre>
+            </div>
+          </v-expand-transition>
+        </v-card-text>
+      </v-card>
     </div>
 
     <!-- Full Example -->
     <div class="mb-8">
       <h2 class="text-h5 font-weight-medium mb-4">Full Example</h2>
-      <v-card>
+      <p class="text-body-2 mb-4 text-medium-emphasis">
+        Multiple list items demonstrating different configurations in a real-world scenario.
+      </p>
+
+      <!-- Live Example -->
+      <v-card class="mb-4">
         <v-card-text>
           <v-list>
             <CustomListItem
@@ -170,6 +324,27 @@
               @menuAction="handleMenuAction"
             />
           </v-list>
+        </v-card-text>
+      </v-card>
+
+      <!-- Code Section -->
+      <v-card>
+        <v-card-text class="pa-0">
+          <v-btn
+            @click="showFullExamplesCode = !showFullExamplesCode"
+            variant="text"
+            prepend-icon="mdi-code-tags"
+            class="ma-4"
+          >
+            {{ showFullExamplesCode ? 'Hide code' : 'Show code' }}
+          </v-btn>
+
+          <v-expand-transition>
+            <div v-if="showFullExamplesCode">
+              <v-divider />
+              <pre class="pa-4 text-caption code-block" v-html="highlightedFullExamplesCode"></pre>
+            </div>
+          </v-expand-transition>
         </v-card-text>
       </v-card>
     </div>
@@ -192,6 +367,13 @@ import { CustomListItem } from '@/components'
 
 // Code visibility toggles
 const showAllFeaturesCode = ref(false)
+const showActiveStatesCode = ref(false)
+const showBasicCode = ref(false)
+const showAvatarCode = ref(false)
+const showChipCode = ref(false)
+const showMetadataCode = ref(false)
+const showMenuCode = ref(false)
+const showFullExamplesCode = ref(false)
 
 // Simple syntax highlighter function
 const highlightCode = (code: string): string => {
@@ -217,6 +399,34 @@ const highlightCode = (code: string): string => {
 
 const highlightedAllFeaturesCode = computed(() => {
   return highlightCode(allFeaturesCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
+
+const highlightedActiveStatesCode = computed(() => {
+  return highlightCode(activeStatesCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
+
+const highlightedBasicCode = computed(() => {
+  return highlightCode(basicCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
+
+const highlightedAvatarCode = computed(() => {
+  return highlightCode(avatarCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
+
+const highlightedChipCode = computed(() => {
+  return highlightCode(chipCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
+
+const highlightedMetadataCode = computed(() => {
+  return highlightCode(metadataCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
+
+const highlightedMenuCode = computed(() => {
+  return highlightCode(menuCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
+
+const highlightedFullExamplesCode = computed(() => {
+  return highlightCode(fullExamplesCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
 })
 
 const allFeaturesConfig = {
@@ -583,6 +793,307 @@ const allFeaturesCodeExample = `<template>
         active: false
       }"
       value="all-features-demo"
+      @click="handleClick"
+      @menuAction="handleMenuAction"
+    />
+  </v-list>
+</template>
+
+<script setup lang="ts">
+import { CustomListItem } from '@/components'
+
+const handleClick = (value: any) => {
+  console.log('Clicked:', value)
+}
+
+const handleMenuAction = (actionTitle: string, value: any) => {
+  console.log('Menu action:', actionTitle, 'for item:', value)
+}
+</script\>`
+
+const activeStatesCodeExample = `<template>
+  <v-list>
+    <!-- Normal State -->
+    <CustomListItem
+      :config="{
+        showAvatar: true,
+        avatarType: 'user',
+        avatarText: 'JD',
+        avatarColor: 'primary',
+        title: 'John Doe - Normal State',
+        subtitle: 'This item is in normal/default state',
+        showStatusChip: true,
+        chipConfig: {
+          text: 'Available',
+          color: 'success',
+          variant: 'tonal'
+        },
+        active: false,
+        showDivider: true
+      }"
+      @click="handleClick"
+    />
+
+    <!-- Active State -->
+    <CustomListItem
+      :config="{
+        showAvatar: true,
+        avatarType: 'user',
+        avatarText: 'AB',
+        avatarColor: 'secondary',
+        title: 'Alice Brown - Active State',
+        subtitle: 'This item is currently active/selected',
+        showStatusChip: true,
+        chipConfig: {
+          text: 'Online',
+          color: 'info',
+          variant: 'tonal'
+        },
+        active: true,
+        showDivider: true
+      }"
+      @click="handleClick"
+    />
+
+    <!-- Selected State -->
+    <CustomListItem
+      :config="{
+        showAvatar: true,
+        avatarType: 'icon',
+        avatarIcon: 'folder',
+        avatarColor: 'warning',
+        title: 'Project Alpha - Selected State',
+        subtitle: 'This item shows selected state with primary color highlight',
+        showTitleChips: true,
+        titleChipConfig: {
+          text: 'Selected',
+          color: 'primary',
+          variant: 'flat'
+        },
+        showStatusChip: true,
+        chipConfig: {
+          text: 'In Progress',
+          color: 'warning',
+          variant: 'tonal'
+        },
+        active: true,
+        showDivider: true
+      }"
+      @click="handleClick"
+    />
+  </v-list>
+</template>
+
+<script setup lang="ts">
+import { CustomListItem } from '@/components'
+
+const handleClick = (value: any) => {
+  console.log('Clicked:', value)
+}
+</script\>`
+
+const basicCodeExample = `<template>
+  <v-list>
+    <CustomListItem
+      :config="{
+        title: 'Basic List Item',
+        subtitle: 'Simple list item with title and subtitle'
+      }"
+      @click="handleClick"
+    />
+  </v-list>
+</template>
+
+<script setup lang="ts">
+import { CustomListItem } from '@/components'
+
+const handleClick = (value: any) => {
+  console.log('Clicked:', value)
+}
+</script\>`
+
+const avatarCodeExample = `<template>
+  <v-list>
+    <CustomListItem
+      :config="{
+        showAvatar: true,
+        avatarType: 'user',
+        avatarText: 'JD',
+        avatarColor: 'primary',
+        title: 'John Doe',
+        subtitle: 'john.doe@example.com'
+      }"
+      @click="handleClick"
+    />
+  </v-list>
+</template>
+
+<script setup lang="ts">
+import { CustomListItem } from '@/components'
+
+const handleClick = (value: any) => {
+  console.log('Clicked:', value)
+}
+</script\>`
+
+const chipCodeExample = `<template>
+  <v-list>
+    <CustomListItem
+      :config="{
+        title: 'AWS Production Account',
+        subtitle: 'Primary production environment',
+        showStatusChip: true,
+        chipConfig: {
+          text: 'Active',
+          color: 'success',
+          variant: 'tonal'
+        }
+      }"
+      @click="handleClick"
+    />
+  </v-list>
+</template>
+
+<script setup lang="ts">
+import { CustomListItem } from '@/components'
+
+const handleClick = (value: any) => {
+  console.log('Clicked:', value)
+}
+</script\>`
+
+const metadataCodeExample = `<template>
+  <v-list>
+    <CustomListItem
+      :config="{
+        showAvatar: true,
+        avatarType: 'icon',
+        avatarIcon: 'cloud',
+        title: 'Production Environment',
+        subtitle: 'Main production cluster',
+        showMetadata: true,
+        metadataItems: ['ID: prod-001', 'Region: us-east-1', 'Type: Kubernetes']
+      }"
+      @click="handleClick"
+    />
+  </v-list>
+</template>
+
+<script setup lang="ts">
+import { CustomListItem } from '@/components'
+
+const handleClick = (value: any) => {
+  console.log('Clicked:', value)
+}
+</script\>`
+
+const menuCodeExample = `<template>
+  <v-list>
+    <CustomListItem
+      :config="{
+        title: 'User Account',
+        subtitle: 'Administrator access',
+        showActionMenu: true,
+        menuActions: [
+          {
+            title: 'Edit',
+            icon: 'mdi-pencil',
+            action: () => console.log('Edit clicked')
+          },
+          {
+            title: 'Delete',
+            icon: 'mdi-delete',
+            action: () => console.log('Delete clicked')
+          }
+        ]
+      }"
+      @click="handleClick"
+      @menuAction="handleMenuAction"
+    />
+  </v-list>
+</template>
+
+<script setup lang="ts">
+import { CustomListItem } from '@/components'
+
+const handleClick = (value: any) => {
+  console.log('Clicked:', value)
+}
+
+const handleMenuAction = (actionTitle: string, value: any) => {
+  console.log('Menu action:', actionTitle, 'for item:', value)
+}
+</script\>`
+
+const fullExamplesCodeExample = `<template>
+  <v-list>
+    <!-- AWS Provider Example -->
+    <CustomListItem
+      :config="{
+        showAvatar: true,
+        avatarType: 'provider',
+        avatarSrc: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
+        title: 'AWS Production',
+        subtitle: 'Production environment for web services',
+        showMetadata: true,
+        metadataItems: ['ID: aws-prod-001', 'Region: us-east-1', 'Cost: $1,234/month'],
+        showStatusChip: true,
+        chipConfig: {
+          text: 'Active',
+          color: 'success',
+          variant: 'tonal'
+        },
+        showActionMenu: true,
+        menuActions: [
+          {
+            title: 'View Details',
+            icon: 'mdi-eye',
+            action: () => console.log('View details')
+          },
+          {
+            title: 'Edit Settings',
+            icon: 'mdi-cog',
+            action: () => console.log('Edit settings')
+          }
+        ],
+        showDivider: true
+      }"
+      @click="handleClick"
+      @menuAction="handleMenuAction"
+    />
+
+    <!-- User Example -->
+    <CustomListItem
+      :config="{
+        showAvatar: true,
+        avatarType: 'user',
+        avatarText: 'AB',
+        avatarColor: 'secondary',
+        title: 'Alice Brown',
+        subtitle: 'Senior Developer',
+        showTitleChips: true,
+        titleChipConfig: {
+          text: 'Admin',
+          color: 'warning',
+          variant: 'tonal'
+        },
+        showMetadata: true,
+        metadataItems: ['Department: Engineering', 'Location: San Francisco', 'Joined: 2021'],
+        showActionMenu: true,
+        menuActions: [
+          {
+            title: 'Send Message',
+            icon: 'mdi-message',
+            action: () => console.log('Send message')
+          },
+          {
+            title: 'Remove Access',
+            icon: 'mdi-account-remove',
+            action: () => console.log('Remove access')
+          }
+        ],
+        showDivider: true
+      }"
       @click="handleClick"
       @menuAction="handleMenuAction"
     />

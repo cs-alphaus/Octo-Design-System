@@ -322,4 +322,88 @@ app.use(createAuth0({
 6. **Add lazy loading** for performance-critical lists
 7. **Follow accessibility guidelines**
 
+## 📚 Documentation Standards
+
+### Interactive Code Display Pattern
+
+All component documentation pages should follow this standardized pattern for maximum developer experience:
+
+#### Required Structure for Each Example Section:
+
+```vue
+<!-- Example Section -->
+<div class="mb-8">
+  <h2 class="text-h5 font-weight-medium mb-4">Example Title</h2>
+  <p class="text-body-2 mb-4 text-medium-emphasis">
+    Brief description of what this example demonstrates.
+  </p>
+
+  <!-- Live Example -->
+  <v-card class="mb-4">
+    <v-card-text>
+      <!-- Component example here -->
+    </v-card-text>
+  </v-card>
+
+  <!-- Code Section -->
+  <v-card>
+    <v-card-text class="pa-0">
+      <v-btn
+        @click="showExampleCode = !showExampleCode"
+        variant="text"
+        prepend-icon="mdi-code-tags"
+        class="ma-4"
+      >
+        {{ showExampleCode ? 'Hide code' : 'Show code' }}
+      </v-btn>
+
+      <v-expand-transition>
+        <div v-if="showExampleCode">
+          <v-divider />
+          <pre class="pa-4 text-caption code-block" v-html="highlightedExampleCode"></pre>
+        </div>
+      </v-expand-transition>
+    </v-card-text>
+  </v-card>
+</div>
+```
+
+#### Code Example Requirements:
+
+1. **Raw Configuration Display**: Show complete configuration objects inline rather than abstracted variables
+2. **Syntax Highlighting**: Use the standardized syntax highlighter with VS Code dark theme colors
+3. **Complete Examples**: Include both template and script sections
+4. **Copy-Paste Ready**: Engineers should be able to copy code directly
+
+#### Implementation Checklist:
+
+- ✅ **Reactive Variables**: `const showExampleCode = ref(false)` for each section
+- ✅ **Computed Highlighting**: `const highlightedExampleCode = computed(() => highlightCode(...))`
+- ✅ **Inline Configuration**: Show complete config objects in template
+- ✅ **Expandable UI**: Use `v-expand-transition` for smooth animations
+- ✅ **Consistent Styling**: Apply `.code-block` CSS class with syntax colors
+
+#### CSS Requirements:
+
+```css
+<style scoped>
+.code-block {
+  background: #1e1e1e !important;
+  color: #d4d4d4;
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+.code-block :deep(.tag) { color: #569cd6; }
+.code-block :deep(.directive) { color: #c586c0; }
+.code-block :deep(.string) { color: #ce9178; }
+.code-block :deep(.keyword) { color: #569cd6; }
+.code-block :deep(.comment) { color: #6a9955; }
+.code-block :deep(.number) { color: #b5cea8; }
+.code-block :deep(.type) { color: #4ec9b0; }
+</style>
+```
+
+This pattern ensures consistent, professional documentation across all components with maximum developer utility.
+
 This design system provides a solid foundation for building consistent, maintainable Vue.js applications with modern Material Design aesthetics and robust development tooling.
