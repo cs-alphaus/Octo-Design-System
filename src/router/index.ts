@@ -31,6 +31,16 @@ const router = createRouter({
           component: () => import('@/views/foundations/Spacing.vue')
         }
       ]
+    },
+    {
+      path: '/components',
+      children: [
+        {
+          path: 'custom-list-item',
+          name: 'CustomListItem',
+          component: () => import('@/views/components/CustomListItemPage.vue')
+        }
+      ]
     }
   ]
 })

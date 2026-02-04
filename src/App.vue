@@ -75,6 +75,20 @@
           @click="item.action"
         />
 
+        <!-- Components Section -->
+        <v-list-subheader class="text-uppercase text-caption font-weight-bold text-medium-emphasis mb-2 mt-6">
+          Components
+        </v-list-subheader>
+
+        <v-list-item
+          v-for="item in componentItems"
+          :key="item.path"
+          :to="item.path"
+          :title="item.title"
+          class="mb-1 rounded-lg"
+          color="primary"
+        />
+
       </v-list>
     </v-navigation-drawer>
 
@@ -124,7 +138,9 @@ const resourceItems: ResourceItem[] = [
   }
 ]
 
-const componentItems: { title: string; path: string }[] = []
+const componentItems = [
+  { title: 'Custom List Item', path: '/components/custom-list-item' }
+]
 
 const toggleTheme = () => {
   theme.global.name.value = isDark.value ? 'light' : 'dark'
