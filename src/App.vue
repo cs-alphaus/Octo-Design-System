@@ -136,6 +136,7 @@ const componentItems = [
   { title: 'Breadcrumbs', path: '/components/breadcrumbs' },
   { title: 'Button', path: '/components/button' },
   { title: 'Calendar', path: '/components/calendar' },
+  { title: 'Chip', path: '/components/chip' },
   { title: 'Color Card', path: '/components/color-card' },
   { title: 'Copy Button', path: '/components/copy-button' },
   { title: 'Dialog', path: '/components/dialog' },

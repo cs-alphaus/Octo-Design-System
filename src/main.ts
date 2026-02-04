@@ -36,6 +36,10 @@ const vuetify = createVuetify({
       elevation: 0,
       class: 'text-none'
     },
+    VChip: {
+      color: 'primary',
+      variant: 'tonal'
+    },
     VAvatar: { color: 'grey' },
     VTextField: { color: 'primary', variant: 'outlined' },
     VTextarea: { color: 'primary', variant: 'outlined', noResize: true },

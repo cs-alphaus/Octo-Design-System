@@ -4,8 +4,13 @@
     <div class="mb-8">
       <h1 class="text-h3 font-weight-bold mb-4">Button</h1>
       <p class="text-h6 text-medium-emphasis">
-        Trigger an action or event, such as submitting a form or displaying a dialog.
+        Enhanced Vuetify button with responsive behavior and automatic tooltips. Wraps <code>v-btn</code> with additional functionality.
       </p>
+
+      <v-alert type="info" variant="tonal" class="mt-4">
+        <v-icon icon="mdi-information" class="mr-2" />
+        This is a wrapper component around Vuetify's <code>v-btn</code> that adds responsive icon/text switching and automatic tooltip management.
+      </v-alert>
     </div>
 
     <!-- Sizes Section -->
@@ -33,11 +38,19 @@
             <span>View code</span>
           </summary>
           <div class="code-content">
-            <pre class="code-block"><code>&lt;Button text="Upload" size="x-small" /&gt;
+            <pre class="code-block"><code>&lt;!-- Design System Usage --&gt;
+&lt;Button text="Upload" size="x-small" /&gt;
 &lt;Button text="Upload" size="small" /&gt;
 &lt;Button text="Upload" /&gt;
 &lt;Button text="Upload" size="large" /&gt;
-&lt;Button text="Upload" size="x-large" /&gt;</code></pre>
+&lt;Button text="Upload" size="x-large" /&gt;
+
+&lt;!-- Equivalent Vuetify Code --&gt;
+&lt;v-btn text="Upload" size="x-small" /&gt;
+&lt;v-btn text="Upload" size="small" /&gt;
+&lt;v-btn text="Upload" /&gt;
+&lt;v-btn text="Upload" size="large" /&gt;
+&lt;v-btn text="Upload" size="x-large" /&gt;</code></pre>
           </div>
         </details>
       </div>
@@ -225,7 +238,8 @@
             <span>View code</span>
           </summary>
           <div class="code-content">
-            <pre class="code-block"><code>&lt;Button
+            <pre class="code-block"><code>&lt;!-- Design System Usage (Enhanced with responsive behavior) --&gt;
+&lt;Button
   text="Mobile Responsive"
   prepend-icon="mdi-cellphone"
   break-point="sm"
@@ -233,20 +247,15 @@
   variant="flat"
 /&gt;
 
-&lt;Button
-  text="Tablet Responsive"
-  prepend-icon="mdi-tablet"
-  break-point="md"
-  color="secondary"
-  variant="outlined"
-/&gt;</code></pre>
+&lt;!-- This functionality is NOT available with v-btn alone --&gt;
+&lt;!-- You'd need custom logic to achieve this with Vuetify --&gt;</code></pre>
           </div>
         </details>
       </div>
 
-      <v-alert type="info" variant="tonal" class="mb-6">
-        <v-icon icon="mdi-information" class="mr-2" />
-        <strong>Tip:</strong> Resize your browser window to see the responsive behavior in action. Buttons will switch to icon-only mode at the specified breakpoint.
+      <v-alert type="success" variant="tonal" class="mb-6">
+        <v-icon icon="mdi-lightbulb" class="mr-2" />
+        <strong>Enhanced Feature:</strong> The <code>break-point</code> prop is unique to our Button component. It automatically switches to icon-only mode at smaller screens and shows the button text as a tooltip. This functionality isn't available in standard <code>v-btn</code>.
       </v-alert>
     </section>
 
