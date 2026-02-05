@@ -11,7 +11,7 @@ export default defineConfig({
     }
   },
   // GitHub Pages deployment configuration
-  base: process.env.NODE_ENV === 'production' ? '/octo-design-system/' : '/',
+  base: '/Octo-Design-System/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets'
