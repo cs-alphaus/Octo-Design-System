@@ -4,7 +4,7 @@
     <v-app-bar color="surface" elevation="1" height="64">
       <template v-slot:prepend>
         <div class="d-flex align-center ml-6">
-          <v-icon size="24" class="mr-3" color="primary">mdi-triangle</v-icon>
+          <v-icon size="24" class="mr-3" color="primary">mdi-octopus</v-icon>
           <span class="text-h6 font-weight-bold">Octo Design System</span>
         </div>
       </template>
@@ -14,7 +14,7 @@
       <template v-slot:append>
         <div class="d-flex align-center mr-6">
           <v-text-field
-            placeholder="Search Octo"
+            placeholder="Search design system"
             variant="outlined"
             density="compact"
             prepend-inner-icon="mdi-magnify"
@@ -23,7 +23,7 @@
             class="mr-4"
           />
 
-          <!-- Universal Theme Toggle -->
+          <!-- Theme Toggle -->
           <v-btn
             :icon="isDark ? 'mdi-weather-sunny' : 'mdi-weather-night'"
             variant="text"
@@ -43,7 +43,6 @@
       border="0"
       class="design-system-nav"
     >
-
       <!-- Navigation Menu -->
       <v-list nav density="compact" class="px-4 pt-4">
         <!-- Foundations Section -->
@@ -56,6 +55,22 @@
           :key="item.path"
           :to="item.path"
           :title="item.title"
+          :prepend-icon="item.icon"
+          class="mb-1 rounded-lg"
+          color="primary"
+        />
+
+        <!-- Components Section -->
+        <v-list-subheader class="text-uppercase text-caption font-weight-bold text-medium-emphasis mb-2 mt-6">
+          Components
+        </v-list-subheader>
+
+        <v-list-item
+          v-for="item in componentItems"
+          :key="item.path"
+          :to="item.path"
+          :title="item.title"
+          :prepend-icon="item.icon"
           class="mb-1 rounded-lg"
           color="primary"
         />
@@ -74,21 +89,6 @@
           color="primary"
           @click="item.action"
         />
-
-        <!-- Components Section -->
-        <v-list-subheader class="text-uppercase text-caption font-weight-bold text-medium-emphasis mb-2 mt-6">
-          Components
-        </v-list-subheader>
-
-        <v-list-item
-          v-for="item in componentItems"
-          :key="item.path"
-          :to="item.path"
-          :title="item.title"
-          class="mb-1 rounded-lg"
-          color="primary"
-        />
-
       </v-list>
     </v-navigation-drawer>
 
@@ -116,12 +116,36 @@ const isDark = computed(() => theme.global.current.value.dark)
 const snackbar = ref(false)
 const snackbarText = ref('')
 
-// Navigation items
+// Navigation items based on CLAUDE.md specifications
 const foundationsItems = [
-  { title: 'Introduction', path: '/foundations/introduction' },
-  { title: 'Colors', path: '/foundations/colors' },
-  { title: 'Typography', path: '/foundations/typography' },
-  { title: 'Spacing', path: '/foundations/spacing' }
+  {
+    title: 'Introduction',
+    path: '/foundations/introduction',
+    icon: 'mdi-home-outline'
+  },
+  {
+    title: 'Colors',
+    path: '/foundations/colors',
+    icon: 'mdi-palette-outline'
+  },
+  {
+    title: 'Typography',
+    path: '/foundations/typography',
+    icon: 'mdi-format-text'
+  },
+  {
+    title: 'Spacing',
+    path: '/foundations/spacing',
+    icon: 'mdi-ruler'
+  }
+]
+
+const componentItems = [
+  {
+    title: 'Custom List Item',
+    path: '/components/custom-list-item',
+    icon: 'mdi-format-list-bulleted'
+  }
 ]
 
 interface ResourceItem {
@@ -135,15 +159,22 @@ const resourceItems: ResourceItem[] = [
     title: 'Octo UI Repository',
     icon: 'mdi-github',
     action: () => window.open('https://github.com/alphauslabs/octo-ui', '_blank')
+  },
+  {
+    title: 'Material Design 3',
+    icon: 'mdi-material-design',
+    action: () => window.open('https://m3.material.io/', '_blank')
+  },
+  {
+    title: 'Vuetify Documentation',
+    icon: 'mdi-vuetify',
+    action: () => window.open('https://vuetifyjs.com/', '_blank')
   }
-]
-
-const componentItems = [
-  { title: 'Custom List Item', path: '/components/custom-list-item' }
 ]
 
 const toggleTheme = () => {
   theme.global.name.value = isDark.value ? 'light' : 'dark'
+  showNotification(`Switched to ${isDark.value ? 'light' : 'dark'} theme`)
 }
 
 // Global notification function
@@ -153,10 +184,12 @@ declare global {
   }
 }
 
-window.showNotification = (message: string) => {
+const showNotification = (message: string) => {
   snackbarText.value = message
   snackbar.value = true
 }
+
+window.showNotification = showNotification
 </script>
 
 <style scoped>
@@ -180,5 +213,10 @@ window.showNotification = (message: string) => {
 
 :deep(.v-list-item__prepend > .v-icon) {
   opacity: 0.6;
+}
+
+:deep(.v-list-item--active .v-list-item__prepend > .v-icon) {
+  opacity: 1;
+  color: rgb(var(--v-theme-primary));
 }
 </style>

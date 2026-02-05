@@ -1,274 +1,380 @@
 <template>
   <div>
     <div class="mb-8">
-      <h1 class="text-h3 font-weight-bold mb-4">Spacing</h1>
-      <p class="text-h6 text-medium-emphasis">
-        4px-based spacing system extracted from Octo's design patterns
+      <h1 class="text-h4 font-weight-bold mb-4">Spacing</h1>
+      <p class="text-body-1 mb-6">
+        Consistent spacing system based on a 4px grid with Vuetify's built-in spacing utilities.
+        All spacing values follow Material Design 3 principles for visual rhythm and hierarchy.
       </p>
     </div>
 
     <!-- Spacing Scale -->
-    <v-card class="mb-6">
-      <v-card-title>Spacing Scale</v-card-title>
-      <v-card-subtitle>Based on 4px base unit (0.25rem)</v-card-subtitle>
-      <v-card-text>
-        <div class="spacing-showcase">
-          <div
-            v-for="(size, key) in spacingScale"
-            :key="key"
-            class="spacing-item mb-4"
-          >
+    <div class="mb-8">
+      <h2 class="text-h5 font-weight-medium mb-4">Spacing Scale</h2>
+      <p class="text-body-2 mb-4 text-medium-emphasis">
+        Our spacing system is based on a 4px grid. Each unit represents 4px of space.
+      </p>
+
+      <v-card>
+        <v-card-text>
+          <div v-for="space in spacingScale" :key="space.value" class="mb-6">
+            <div class="d-flex align-center mb-2">
+              <v-chip variant="outlined" size="small" class="mr-4 font-mono">{{ space.value }}</v-chip>
+              <span class="text-body-2 text-medium-emphasis">{{ space.pixels }} • {{ space.usage }}</span>
+            </div>
             <div class="d-flex align-center">
-              <div class="spacing-visual mr-4">
-                <div
-                  class="spacing-bar"
-                  :style="{ width: size, height: '20px', backgroundColor: 'rgb(var(--v-theme-primary))' }"
-                />
-              </div>
-              <div class="flex-grow-1">
-                <div class="d-flex justify-between align-center">
-                  <div>
-                    <v-chip size="small" variant="outlined" class="mr-2">{{ key }}</v-chip>
-                    <span class="text-body-2">{{ size }}</span>
+              <div
+                class="spacing-demo-box"
+                :style="{ width: `${space.size}px`, height: '24px' }"
+              ></div>
+              <span class="text-caption ml-2">{{ space.size }}px</span>
+            </div>
+          </div>
+        </v-card-text>
+      </v-card>
+    </div>
+
+    <!-- Margin Utilities -->
+    <div class="mb-8">
+      <h2 class="text-h5 font-weight-medium mb-4">Margin Utilities</h2>
+      <p class="text-body-2 mb-4 text-medium-emphasis">
+        Margin utilities for external spacing. Use 'm' for all sides, or directional utilities.
+      </p>
+
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-card>
+            <v-card-title>All Sides</v-card-title>
+            <v-card-text>
+              <div v-for="margin in marginUtilities" :key="margin.class" class="mb-3">
+                <v-chip variant="outlined" size="small" class="font-mono mb-2">{{ margin.class }}</v-chip>
+                <div class="demo-container">
+                  <div class="demo-outer">
+                    <div :class="`demo-inner ${margin.class}`">Content</div>
                   </div>
-                  <span class="text-caption text-medium-emphasis">
-                    {{ parseInt(size) / 4 }}rem
-                  </span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </v-card-text>
-    </v-card>
+            </v-card-text>
+          </v-card>
+        </v-col>
 
-    <!-- Vuetify Classes -->
-    <v-card class="mb-6">
-      <v-card-title>Vuetify Spacing Classes</v-card-title>
-      <v-card-subtitle>Utility classes for margins and padding</v-card-subtitle>
-      <v-card-text>
-        <v-row>
-          <v-col cols="12" md="6">
-            <h4 class="mb-3">Margin Classes</h4>
-            <div class="spacing-classes">
-              <div
-                v-for="example in marginExamples"
-                :key="example.class"
-                class="mb-2 d-flex justify-between align-center"
-              >
-                <code class="text-caption">{{ example.class }}</code>
-                <span class="text-caption text-medium-emphasis">{{ example.description }}</span>
+        <v-col cols="12" md="6">
+          <v-card>
+            <v-card-title>Directional</v-card-title>
+            <v-card-text>
+              <div v-for="direction in marginDirections" :key="direction.class" class="mb-3">
+                <v-chip variant="outlined" size="small" class="font-mono mb-2">{{ direction.class }}</v-chip>
+                <p class="text-caption text-medium-emphasis">{{ direction.description }}</p>
               </div>
-            </div>
-          </v-col>
-          <v-col cols="12" md="6">
-            <h4 class="mb-3">Padding Classes</h4>
-            <div class="spacing-classes">
-              <div
-                v-for="example in paddingExamples"
-                :key="example.class"
-                class="mb-2 d-flex justify-between align-center"
-              >
-                <code class="text-caption">{{ example.class }}</code>
-                <span class="text-caption text-medium-emphasis">{{ example.description }}</span>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+
+    <!-- Padding Utilities -->
+    <div class="mb-8">
+      <h2 class="text-h5 font-weight-medium mb-4">Padding Utilities</h2>
+      <p class="text-body-2 mb-4 text-medium-emphasis">
+        Padding utilities for internal spacing. Use 'p' for all sides, or directional utilities.
+      </p>
+
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-card>
+            <v-card-title>All Sides</v-card-title>
+            <v-card-text>
+              <div v-for="padding in paddingUtilities" :key="padding.class" class="mb-3">
+                <v-chip variant="outlined" size="small" class="font-mono mb-2">{{ padding.class }}</v-chip>
+                <div :class="`demo-padding-box ${padding.class}`">
+                  <div class="demo-padding-content">Content</div>
+                </div>
               </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+
+        <v-col cols="12" md="6">
+          <v-card>
+            <v-card-title>Directional</v-card-title>
+            <v-card-text>
+              <div v-for="direction in paddingDirections" :key="direction.class" class="mb-3">
+                <v-chip variant="outlined" size="small" class="font-mono mb-2">{{ direction.class }}</v-chip>
+                <p class="text-caption text-medium-emphasis">{{ direction.description }}</p>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+
+    <!-- Gap Utilities -->
+    <div class="mb-8">
+      <h2 class="text-h5 font-weight-medium mb-4">Gap Utilities</h2>
+      <p class="text-body-2 mb-4 text-medium-emphasis">
+        Gap utilities for spacing between flex and grid items.
+      </p>
+
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-card>
+            <v-card-title>Flex Gap</v-card-title>
+            <v-card-text>
+              <div v-for="gap in gapUtilities" :key="gap.class" class="mb-4">
+                <v-chip variant="outlined" size="small" class="font-mono mb-2">{{ gap.class }}</v-chip>
+                <div :class="`d-flex flex-wrap ${gap.class}`">
+                  <div class="gap-demo-item">Item 1</div>
+                  <div class="gap-demo-item">Item 2</div>
+                  <div class="gap-demo-item">Item 3</div>
+                </div>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+
+        <v-col cols="12" md="6">
+          <v-card>
+            <v-card-title>Responsive Usage</v-card-title>
+            <v-card-text>
+              <pre class="text-caption pa-3" style="background: rgba(var(--v-theme-surface-variant), 0.3); border-radius: 8px;">{{ responsiveCode }}</pre>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+
+    <!-- Real-world Examples -->
+    <div class="mb-8">
+      <h2 class="text-h5 font-weight-medium mb-4">Real-world Examples</h2>
+
+      <v-row>
+        <v-col cols="12" md="4">
+          <v-card class="pa-6">
+            <h3 class="text-h6 mb-4">Card Example</h3>
+            <p class="text-body-2 mb-4">
+              This card uses pa-6 for internal padding and mb-4 for margins between content elements.
+            </p>
+            <v-btn color="primary" class="mt-2">Action</v-btn>
+          </v-card>
+        </v-col>
+
+        <v-col cols="12" md="4">
+          <v-card>
+            <v-card-title class="pb-2">List Example</v-card-title>
+            <v-card-text class="pt-0">
+              <div class="py-3 border-b">
+                <div class="text-subtitle-2 mb-1">Item Title</div>
+                <div class="text-body-2 text-medium-emphasis">Item description with py-3 spacing</div>
+              </div>
+              <div class="py-3 border-b">
+                <div class="text-subtitle-2 mb-1">Item Title</div>
+                <div class="text-body-2 text-medium-emphasis">Item description with py-3 spacing</div>
+              </div>
+              <div class="py-3">
+                <div class="text-subtitle-2 mb-1">Item Title</div>
+                <div class="text-body-2 text-medium-emphasis">Item description with py-3 spacing</div>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+
+        <v-col cols="12" md="4">
+          <v-card class="pa-4">
+            <h3 class="text-h6 mb-3">Button Group</h3>
+            <div class="d-flex gap-3 flex-wrap">
+              <v-btn color="primary">Primary</v-btn>
+              <v-btn variant="outlined">Secondary</v-btn>
+              <v-btn variant="text">Tertiary</v-btn>
             </div>
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
 
-    <!-- Common Patterns -->
-    <v-card class="mb-6">
-      <v-card-title>Common Spacing Patterns</v-card-title>
-      <v-card-subtitle>Extracted from Octo components</v-card-subtitle>
-      <v-card-text>
-        <v-row>
-          <v-col
-            v-for="pattern in spacingPatterns"
-            :key="pattern.name"
-            cols="12"
-            md="4"
-          >
-            <div class="pattern-example pa-4 mb-4" style="border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity)); border-radius: 8px;">
-              <h4 class="text-h6 mb-2">{{ pattern.name }}</h4>
-              <p class="text-body-2 mb-2">{{ pattern.description }}</p>
-              <v-chip size="small" variant="tonal">{{ pattern.value }}</v-chip>
-            </div>
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
-
-    <!-- Usage Examples -->
-    <v-card class="mb-6">
-      <v-card-title>Usage Examples</v-card-title>
-      <v-card-text>
-        <h4 class="mb-3">CSS Custom Properties</h4>
-        <v-code class="mb-4">
-/* Using design tokens */
-.card {
-  padding: var(--spacing-4); /* 16px */
-  margin-bottom: var(--spacing-6); /* 24px */
-}
-
-/* Using helper function */
-.component {
-  padding: {{ '{' }} formatToPx(spacing[4]) {{ '}' }}; /* "16px" */
-}
-        </v-code>
-
-        <h4 class="mb-3">Vuetify Classes</h4>
-        <v-code class="mb-4">
-&lt;!-- Padding --&gt;
-&lt;v-card class="pa-4"&gt;16px padding all sides&lt;/v-card&gt;
-&lt;v-card class="px-6 py-2"&gt;24px horizontal, 8px vertical&lt;/v-card&gt;
-
-&lt;!-- Margin --&gt;
-&lt;div class="ma-3"&gt;12px margin all sides&lt;/div&gt;
-&lt;div class="mb-6"&gt;24px bottom margin&lt;/div&gt;
-
-&lt;!-- Gaps --&gt;
-&lt;div class="d-flex ga-2"&gt;8px gap between items&lt;/div&gt;
-        </v-code>
-
-        <h4 class="mb-3">TypeScript</h4>
-        <v-code>
-import { spacing, formatToPx } from '@/tokens'
-
-// Access spacing values
-const cardPadding = spacing[4] // "16px"
-const sectionSpacing = spacing[6] // "24px"
-
-// Format dynamic values
-const dynamicSpacing = formatToPx(someValue) // Ensures px unit
-        </v-code>
-      </v-card-text>
-    </v-card>
-
-    <!-- Interactive Demo -->
+    <!-- Implementation Guide -->
     <v-card>
-      <v-card-title>Interactive Demo</v-card-title>
+      <v-card-title>Implementation Guide</v-card-title>
       <v-card-text>
-        <div class="mb-4">
-          <v-slider
-            v-model="demoSpacing"
-            :min="0"
-            :max="12"
-            :step="1"
-            thumb-label
-            label="Spacing Level"
-            class="mb-4"
-          />
-        </div>
+        <v-row>
+          <v-col cols="12" md="6">
+            <h3 class="text-h6 mb-3">Basic Usage</h3>
+            <pre class="text-caption pa-3 mb-4" style="background: rgba(var(--v-theme-surface-variant), 0.3); border-radius: 8px;">{{ basicUsageCode }}</pre>
 
-        <div class="demo-container pa-4" style="border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity)); border-radius: 8px;">
-          <div
-            class="demo-box"
-            :style="{
-              padding: (spacing as any)[demoSpacing],
-              backgroundColor: 'rgba(var(--v-theme-primary), 0.1)',
-              border: '2px solid rgb(var(--v-theme-primary))',
-              borderRadius: '8px'
-            }"
-          >
-            <div class="text-center">
-              <div class="text-h6 mb-2">Demo Box</div>
-              <div class="text-body-2">
-                Padding: <strong>{{ (spacing as any)[demoSpacing] }}</strong>
-              </div>
-            </div>
-          </div>
-        </div>
+            <h3 class="text-h6 mb-3">Best Practices</h3>
+            <ul class="text-body-2">
+              <li>Use consistent spacing values from the 4px grid</li>
+              <li>Prefer smaller values (2, 3, 4) for tight layouts</li>
+              <li>Use larger values (8, 12, 16) for section separation</li>
+              <li>Combine with responsive classes for mobile optimization</li>
+            </ul>
+          </v-col>
+          <v-col cols="12" md="6">
+            <h3 class="text-h6 mb-3">Common Patterns</h3>
+            <pre class="text-caption pa-3 mb-4" style="background: rgba(var(--v-theme-surface-variant), 0.3); border-radius: 8px;">{{ commonPatternsCode }}</pre>
+          </v-col>
+        </v-row>
       </v-card-text>
     </v-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { spacing } from '@/tokens'
-
-const demoSpacing = ref(4)
-
-const spacingScale = {
-  0: spacing[0],
-  1: spacing[1],
-  2: spacing[2],
-  3: spacing[3],
-  4: spacing[4],
-  5: spacing[5],
-  6: spacing[6],
-  8: spacing[8],
-  10: spacing[10],
-  12: spacing[12],
-  16: spacing[16],
-  20: spacing[20]
-}
-
-const marginExamples = [
-  { class: 'ma-0', description: 'No margin' },
-  { class: 'ma-2', description: '8px all sides' },
-  { class: 'mt-4', description: '16px top' },
-  { class: 'mb-6', description: '24px bottom' },
-  { class: 'mx-3', description: '12px horizontal' },
-  { class: 'my-auto', description: 'Auto vertical' }
+const spacingScale = [
+  { value: '0', pixels: '0px', size: 0, usage: 'No spacing' },
+  { value: '1', pixels: '4px', size: 4, usage: 'Minimal spacing' },
+  { value: '2', pixels: '8px', size: 8, usage: 'Small spacing' },
+  { value: '3', pixels: '12px', size: 12, usage: 'Medium spacing' },
+  { value: '4', pixels: '16px', size: 16, usage: 'Standard spacing' },
+  { value: '5', pixels: '20px', size: 20, usage: 'Large spacing' },
+  { value: '6', pixels: '24px', size: 24, usage: 'Extra large spacing' },
+  { value: '8', pixels: '32px', size: 32, usage: 'Section spacing' },
+  { value: '10', pixels: '40px', size: 40, usage: 'Large section spacing' },
+  { value: '12', pixels: '48px', size: 48, usage: 'Extra large section spacing' },
+  { value: '16', pixels: '64px', size: 64, usage: 'Maximum spacing' }
 ]
 
-const paddingExamples = [
-  { class: 'pa-0', description: 'No padding' },
-  { class: 'pa-4', description: '16px all sides' },
-  { class: 'px-6', description: '24px horizontal' },
-  { class: 'py-2', description: '8px vertical' },
-  { class: 'pt-8', description: '32px top' },
-  { class: 'pb-3', description: '12px bottom' }
+const marginUtilities = [
+  { class: 'm-1', size: '4px' },
+  { class: 'm-2', size: '8px' },
+  { class: 'm-4', size: '16px' },
+  { class: 'm-6', size: '24px' }
 ]
 
-const spacingPatterns = [
-  {
-    name: 'Card Padding',
-    description: 'Standard padding for cards and containers',
-    value: spacing[4]
-  },
-  {
-    name: 'Dialog Padding',
-    description: 'Padding for dialog content',
-    value: spacing[4]
-  },
-  {
-    name: 'Section Spacing',
-    description: 'Space between major sections',
-    value: spacing[6]
-  },
-  {
-    name: 'Component Spacing',
-    description: 'Space between related components',
-    value: spacing[4]
-  },
-  {
-    name: 'List Item Padding',
-    description: 'Padding for list items',
-    value: spacing[3]
-  },
-  {
-    name: 'Button Padding',
-    description: 'Internal button padding',
-    value: `${spacing[2]} ${spacing[4]}`
-  }
+const marginDirections = [
+  { class: 'mt-4', description: 'Margin top' },
+  { class: 'mr-4', description: 'Margin right' },
+  { class: 'mb-4', description: 'Margin bottom' },
+  { class: 'ml-4', description: 'Margin left' },
+  { class: 'mx-4', description: 'Margin horizontal (left + right)' },
+  { class: 'my-4', description: 'Margin vertical (top + bottom)' }
 ]
+
+const paddingUtilities = [
+  { class: 'pa-1', size: '4px' },
+  { class: 'pa-2', size: '8px' },
+  { class: 'pa-4', size: '16px' },
+  { class: 'pa-6', size: '24px' }
+]
+
+const paddingDirections = [
+  { class: 'pt-4', description: 'Padding top' },
+  { class: 'pr-4', description: 'Padding right' },
+  { class: 'pb-4', description: 'Padding bottom' },
+  { class: 'pl-4', description: 'Padding left' },
+  { class: 'px-4', description: 'Padding horizontal (left + right)' },
+  { class: 'py-4', description: 'Padding vertical (top + bottom)' }
+]
+
+const gapUtilities = [
+  { class: 'gap-2', size: '8px' },
+  { class: 'gap-3', size: '12px' },
+  { class: 'gap-4', size: '16px' },
+  { class: 'gap-6', size: '24px' }
+]
+
+const basicUsageCode = `<!-- Margin utilities -->
+<div class="m-4">All margins</div>
+<div class="mt-2 mb-4">Top and bottom margins</div>
+<div class="mx-auto">Centered horizontally</div>
+
+<!-- Padding utilities -->
+<div class="pa-6">All padding</div>
+<div class="px-4 py-2">Different x/y padding</div>
+
+<!-- Gap utilities -->
+<div class="d-flex gap-3">
+  <div>Item 1</div>
+  <div>Item 2</div>
+</div>`
+
+const responsiveCode = `<!-- Responsive spacing -->
+<div class="pa-2 pa-sm-4 pa-md-6">
+  Responsive padding
+</div>
+
+<div class="gap-2 gap-md-4">
+  Responsive gap
+</div>
+
+<div class="mb-4 mb-lg-8">
+  Responsive margins
+</div>`
+
+const commonPatternsCode = `<!-- Card content -->
+<v-card class="pa-6">
+  <h2 class="mb-4">Title</h2>
+  <p class="mb-6">Content</p>
+  <v-btn>Action</v-btn>
+</v-card>
+
+<!-- Form layout -->
+<form class="d-flex flex-column gap-4">
+  <v-text-field />
+  <v-text-field />
+  <div class="d-flex gap-3">
+    <v-btn>Submit</v-btn>
+    <v-btn>Cancel</v-btn>
+  </div>
+</form>
+
+<!-- List items -->
+<div class="py-3 px-4">
+  <h3 class="mb-2">Item</h3>
+  <p class="mb-1">Description</p>
+</div>`
 </script>
 
 <style scoped>
-.spacing-visual {
-  min-width: 100px;
+.spacing-demo-box {
+  background: rgb(var(--v-theme-primary));
+  border-radius: 4px;
 }
 
-.spacing-bar {
-  border-radius: 2px;
-  transition: all 0.2s ease;
+.demo-container {
+  background: rgba(var(--v-theme-surface-variant), 0.3);
+  border-radius: 8px;
+  padding: 8px;
+  margin: 8px 0;
 }
 
-.spacing-item:hover .spacing-bar {
-  opacity: 0.8;
+.demo-outer {
+  background: rgba(var(--v-theme-warning), 0.2);
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.demo-inner {
+  background: rgba(var(--v-theme-primary), 0.8);
+  color: white;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.demo-padding-box {
+  background: rgba(var(--v-theme-warning), 0.2);
+  border-radius: 4px;
+  margin: 8px 0;
+  display: inline-block;
+}
+
+.demo-padding-content {
+  background: rgba(var(--v-theme-primary), 0.8);
+  color: white;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.gap-demo-item {
+  background: rgba(var(--v-theme-primary), 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.border-b {
+  border-bottom: 1px solid rgba(var(--v-theme-outline-variant), 0.2);
 }
 </style>

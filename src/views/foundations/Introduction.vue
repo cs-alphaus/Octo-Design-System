@@ -22,7 +22,7 @@
         <v-btn color="primary" variant="elevated" size="large" to="/foundations/colors">
           Explore Colors
         </v-btn>
-        <v-btn variant="outlined" size="large" to="/components/button">
+        <v-btn variant="outlined" size="large" to="/components/custom-list-item">
           View Components
         </v-btn>
       </div>
@@ -58,8 +58,8 @@
               Reusable UI components with TypeScript support and Vuetify integration.
             </p>
             <ul class="text-body-2">
-              <li>Enhanced Button with responsive behavior</li>
-              <li>Standardized Dialog patterns</li>
+              <li>Configuration-driven component patterns</li>
+              <li>Unified List Item component</li>
               <li>Complete TypeScript definitions</li>
               <li>Octo's exact component logic</li>
             </ul>
