@@ -4,16 +4,11 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/Octo-Design-System/',
   plugins: [vue()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  // GitHub Pages deployment configuration
-  base: '/Octo-Design-System/',
-  build: {
-    outDir: 'dist',
-    assetsDir: 'assets'
-  }
 })
