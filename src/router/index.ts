@@ -31,6 +31,11 @@ const router = createRouter({
       path: '/components/custom-list-item',
       name: 'CustomListItem',
       component: () => import('@/views/components/CustomListItemPage.vue')
+    },
+    {
+      path: '/components/chips',
+      name: 'Chips',
+      component: () => import('@/views/components/Chips.vue')
     }
   ]
 })

@@ -145,6 +145,11 @@ const componentItems = [
     title: 'Custom List Item',
     path: '/components/custom-list-item',
     icon: 'mdi-format-list-bulleted'
+  },
+  {
+    title: 'Chip',
+    path: '/components/chips',
+    icon: 'mdi-format-list-bulleted'
   }
 ]
 
