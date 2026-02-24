@@ -150,6 +150,11 @@ const componentItems = [
     title: 'Chip',
     path: '/components/chips',
     icon: 'mdi-format-list-bulleted'
+  },
+  {
+    title: 'Dialog',
+    path: '/components/dialog',
+    icon: 'mdi-format-list-bulleted'
   }
 ]
 

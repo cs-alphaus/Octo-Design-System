@@ -36,6 +36,11 @@ const router = createRouter({
       path: '/components/chips',
       name: 'Chips',
       component: () => import('@/views/components/Chips.vue')
+    },
+    {
+      path: '/components/dialog',
+      name: 'Dialog',
+      component: () => import('@/views/components/Dialog.vue')
     }
   ]
 })
