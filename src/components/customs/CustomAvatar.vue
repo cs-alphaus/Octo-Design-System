@@ -59,7 +59,7 @@ const backgroundColor = computed(() => {
   if (props.color) {
     return getColor(props.color)
   } else {
-    const color = getColor('on-background')
+    const color = getColor('on-background') || '#000000'
 
     let alpha
     if (theme.global.name.value === 'dark') {
@@ -126,7 +126,7 @@ const avatarType = computed((): AvatarType => {
 
     <v-icon
       v-else-if="avatarType === 'icon'"
-      :icon="getIconName(icon)"
+      :icon="getIconName(icon || '')"
       :size="isOctoAvatar(icon) ? sizeProps.avatarSize : sizeProps.iconSize"
       :color="iconColor"
     />
