@@ -184,7 +184,7 @@ const theme = useTheme()
 const primaryColor = theme.current.value.colors.primary`
 </script>
 
-<script>
+<script lang="ts">
 // Simple ColorCard component defined inline
 const ColorCard = {
   props: {
