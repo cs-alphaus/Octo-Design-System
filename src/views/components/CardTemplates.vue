@@ -532,115 +532,79 @@ const showErrorCode = ref(false)
 
 // Code examples
 const creationFlowCodeExample = `<template>
-  <div class="d-flex flex-column align-center mt-5">
-    <!-- Main Card Container -->
-    <v-card flat rounded="xl" color="surface" width="620">
+  <!-- ProcessCard Component -->
+  <ProcessCard
+    title="Create New Account"
+    width="md"
+    cancel-text="Cancel"
+    :on-cancel="handleCancel"
+    :action-buttons="[
+      {
+        text: 'Next',
+        variant: 'flat',
+        onClick: handleNext
+      }
+    ]"
+  >
+    <!-- Banner Section (Optional) -->
+    <v-banner
+      stacked
+      icon="mdi-information-outline"
+      color="primary"
+      class="mb-6"
+    >
+      <v-banner-text>
+        <p class="font-weight-bold">Account Setup</p>
+        <p>Fill in your account details to get started with Octo.</p>
+      </v-banner-text>
+    </v-banner>
 
-      <!-- ========================================
-           HEADER SECTION
-           - Horizontal padding: 24px (px-6)
-           - Top padding only: 16px (pt-4)
-           - No bottom padding (content section handles spacing)
-      ========================================= -->
-      <div class="px-6 pt-4">
-        <h3 class="text-h5 font-weight-medium">Create New Account</h3>
-      </div>
+    <!-- Form Fields Group -->
+    <div class="d-flex flex-column ga-4 mb-6">
+      <v-text-field
+        label="Account Name"
+        hint="Enter a unique name for your account"
+        persistent-hint
+        placeholder="My Account"
+      />
 
-      <!-- ========================================
-           CONTENT SECTION
-           - Horizontal padding: 24px (px-6)
-           - Vertical padding: 24px (py-6)
-           - Gap between major sections: 24px (ga-6)
-      ========================================= -->
-      <div class="px-6 py-6 d-flex flex-column ga-6">
+      <v-text-field
+        label="Email Address"
+        hint="We'll use this for notifications"
+        persistent-hint
+        placeholder="user@example.com"
+        type="email"
+      />
 
-        <!-- Banner Section (Optional) -->
-        <v-banner
-          stacked
-          icon="mdi-information-outline"
-          color="primary"
-        >
-          <v-banner-text>
-            <p class="font-weight-bold">Account Setup</p>
-            <p>Fill in your account details to get started with Octo.</p>
-          </v-banner-text>
-        </v-banner>
+      <v-select
+        label="Account Type"
+        :items="['Personal', 'Team', 'Enterprise']"
+        hint="Choose the type that best fits your needs"
+        persistent-hint
+      />
+    </div>
 
-        <!-- Form Fields Group
-             - Gap between fields: 16px (ga-4)
-        -->
-        <div class="d-flex flex-column ga-4">
-          <v-text-field
-            label="Account Name"
-            hint="Enter a unique name for your account"
-            persistent-hint
-            placeholder="My Account"
-          />
-
-          <v-text-field
-            label="Email Address"
-            hint="We'll use this for notifications"
-            persistent-hint
-            placeholder="user@example.com"
-            type="email"
-          />
-
-          <v-select
-            label="Account Type"
-            :items="['Personal', 'Team', 'Enterprise']"
-            hint="Choose the type that best fits your needs"
-            persistent-hint
-          />
-        </div>
-
-        <!-- Alerts Group
-             - Gap between alerts: 16px (ga-4)
-             - Variant: outlined
-             - Rounded: small
-        -->
-        <v-alert
-          rounded="small"
-          type="success"
-          variant="outlined"
-          title="Validation Passed"
-          text="All fields are valid. You can proceed to the next step."
-        />
-
-      </div>
-
-      <!-- Divider (separates content from footer) -->
-      <v-divider />
-
-      <!-- ========================================
-           FOOTER SECTION
-           - Horizontal padding: 24px (px-6)
-           - Vertical padding: 16px (py-4)
-           - Flexbox layout for button alignment
-      ========================================= -->
-      <div class="d-flex py-4 px-6">
-        <!-- Cancel button (left) -->
-        <v-btn
-          variant="text"
-          color="secondary"
-          text="Cancel"
-        />
-
-        <v-spacer />
-
-        <!-- Action buttons (right) -->
-        <v-btn
-          color="primary"
-          variant="flat"
-          text="Next"
-        />
-      </div>
-
-    </v-card>
-  </div>
+    <!-- Alert Section -->
+    <v-alert
+      rounded="small"
+      type="success"
+      variant="outlined"
+      title="Validation Passed"
+      text="All fields are valid. You can proceed to the next step."
+    />
+  </ProcessCard>
 </template>
 
 <script setup lang="ts">
-// Your component logic here
+import { ProcessCard } from '@/components'
+
+const handleCancel = () => {
+  console.log('Cancel clicked')
+}
+
+const handleNext = () => {
+  console.log('Next clicked')
+}
 <\/script>`
 
 const spacingCodeExample = `<!-- Spacing Hierarchy -->
@@ -679,168 +643,182 @@ const spacingCodeExample = `<!-- Spacing Hierarchy -->
 </div>`
 
 const minimalCodeExample = `<template>
-  <div class="d-flex flex-column align-center mt-5">
-    <v-card flat rounded="xl" color="surface" width="620">
+  <!-- ProcessCard Component (Minimal - no banner/alerts) -->
+  <ProcessCard
+    title="Quick Setup"
+    width="md"
+    cancel-text="Cancel"
+    :on-cancel="handleCancel"
+    :action-buttons="[
+      {
+        text: 'Create',
+        variant: 'flat',
+        onClick: handleCreate
+      }
+    ]"
+  >
+    <!-- Form Fields Only -->
+    <div class="d-flex flex-column ga-4">
+      <v-text-field
+        label="Project Name"
+        placeholder="Enter project name"
+      />
 
-      <!-- Header Section -->
-      <div class="px-6 pt-4">
-        <h3 class="text-h5 font-weight-medium">Quick Setup</h3>
-      </div>
+      <v-text-field
+        label="Description"
+        placeholder="Brief description"
+      />
 
-      <!-- Content Section -->
-      <div class="px-6 py-6 d-flex flex-column ga-6">
-        <!-- Form Fields Only -->
-        <div class="d-flex flex-column ga-4">
-          <v-text-field
-            label="Project Name"
-            placeholder="Enter project name"
-          />
-
-          <v-text-field
-            label="Description"
-            placeholder="Brief description"
-          />
-
-          <v-select
-            label="Region"
-            :items="['US East', 'US West', 'EU Central', 'Asia Pacific']"
-          />
-        </div>
-      </div>
-
-      <!-- Divider -->
-      <v-divider />
-
-      <!-- Footer Section -->
-      <div class="d-flex py-4 px-6">
-        <v-btn variant="text" color="secondary" text="Cancel" />
-        <v-spacer />
-        <v-btn color="primary" variant="flat" text="Create" />
-      </div>
-
-    </v-card>
-  </div>
+      <v-select
+        label="Region"
+        :items="['US East', 'US West', 'EU Central', 'Asia Pacific']"
+      />
+    </div>
+  </ProcessCard>
 </template>
 
 <script setup lang="ts">
-// Your component logic here
+import { ProcessCard } from '@/components'
+
+const handleCancel = () => {
+  console.log('Cancel clicked')
+}
+
+const handleCreate = () => {
+  console.log('Create clicked')
+}
 <\/script>`
 
 const multiActionCodeExample = `<template>
-  <div class="d-flex flex-column align-center mt-5">
-    <v-card flat rounded="xl" color="surface" width="620">
+  <!-- ProcessCard Component (Multiple Actions) -->
+  <ProcessCard
+    title="Configure Settings"
+    width="md"
+    cancel-text="Cancel"
+    :on-cancel="handleCancel"
+    :action-buttons="[
+      {
+        text: 'Reset to Default',
+        variant: 'tonal',
+        onClick: handleReset
+      },
+      {
+        text: 'Save as Draft',
+        variant: 'tonal',
+        onClick: handleSaveDraft
+      },
+      {
+        text: 'Apply Changes',
+        variant: 'flat',
+        onClick: handleApply
+      }
+    ]"
+  >
+    <!-- Form Fields -->
+    <div class="d-flex flex-column ga-4">
+      <v-text-field
+        label="API Endpoint"
+        placeholder="https://api.example.com"
+      />
 
-      <!-- Header Section -->
-      <div class="px-6 pt-4">
-        <h3 class="text-h5 font-weight-medium">Configure Settings</h3>
-      </div>
+      <v-text-field
+        label="API Key"
+        type="password"
+        placeholder="Enter your API key"
+      />
 
-      <!-- Content Section -->
-      <div class="px-6 py-6 d-flex flex-column ga-6">
-        <div class="d-flex flex-column ga-4">
-          <v-text-field
-            label="API Endpoint"
-            placeholder="https://api.example.com"
-          />
-
-          <v-text-field
-            label="API Key"
-            type="password"
-            placeholder="Enter your API key"
-          />
-
-          <v-text-field
-            label="Timeout (seconds)"
-            type="number"
-            placeholder="30"
-          />
-        </div>
-      </div>
-
-      <!-- Divider -->
-      <v-divider />
-
-      <!-- Footer Section with Multiple Actions -->
-      <div class="d-flex py-4 px-6">
-        <v-btn variant="text" color="secondary" text="Cancel" />
-        <v-spacer />
-        <v-btn variant="tonal" color="secondary" text="Reset to Default" class="mr-2" />
-        <v-btn variant="tonal" color="primary" text="Save as Draft" class="mr-2" />
-        <v-btn color="primary" variant="flat" text="Apply Changes" />
-      </div>
-
-    </v-card>
-  </div>
+      <v-text-field
+        label="Timeout (seconds)"
+        type="number"
+        placeholder="30"
+      />
+    </div>
+  </ProcessCard>
 </template>
 
 <script setup lang="ts">
-// Your component logic here
+import { ProcessCard } from '@/components'
+
+const handleCancel = () => {
+  console.log('Cancel clicked')
+}
+
+const handleReset = () => {
+  console.log('Reset to default')
+}
+
+const handleSaveDraft = () => {
+  console.log('Save as draft')
+}
+
+const handleApply = () => {
+  console.log('Apply changes')
+}
 <\/script>`
 
 const errorCodeExample = `<template>
-  <div class="d-flex flex-column align-center mt-5">
-    <v-card flat rounded="xl" color="surface" width="620">
+  <!-- ProcessCard Component (With Error States) -->
+  <ProcessCard
+    title="Connection Failed"
+    width="md"
+    cancel-text="Cancel"
+    :on-cancel="handleCancel"
+    :action-buttons="[
+      {
+        text: 'Retry Connection',
+        variant: 'flat',
+        onClick: handleRetry
+      }
+    ]"
+  >
+    <!-- Form Fields -->
+    <div class="d-flex flex-column ga-4 mb-6">
+      <v-text-field
+        label="Database URL"
+        placeholder="postgresql://localhost:5432"
+        error
+      />
 
-      <!-- Header Section -->
-      <div class="px-6 pt-4">
-        <h3 class="text-h5 font-weight-medium">Connection Failed</h3>
-      </div>
+      <v-text-field label="Username" placeholder="admin" />
 
-      <!-- Content Section -->
-      <div class="px-6 py-6 d-flex flex-column ga-6">
-        <!-- Form Fields -->
-        <div class="d-flex flex-column ga-4">
-          <v-text-field
-            label="Database URL"
-            placeholder="postgresql://localhost:5432"
-            error
-          />
+      <v-text-field
+        label="Password"
+        type="password"
+        placeholder="Enter password"
+      />
+    </div>
 
-          <v-text-field label="Username" placeholder="admin" />
+    <!-- Error Alerts -->
+    <div class="d-flex flex-column ga-4">
+      <v-alert
+        rounded="small"
+        type="error"
+        variant="outlined"
+        title="Connection Error"
+        text="Unable to establish connection. Please check your credentials."
+      />
 
-          <v-text-field
-            label="Password"
-            type="password"
-            placeholder="Enter password"
-          />
-        </div>
-
-        <!-- Error Alerts -->
-        <div class="d-flex flex-column ga-4">
-          <v-alert
-            rounded="small"
-            type="error"
-            variant="outlined"
-            title="Connection Error"
-            text="Unable to establish connection. Please check your credentials."
-          />
-
-          <v-alert
-            rounded="small"
-            type="warning"
-            variant="outlined"
-            title="Security Warning"
-            text="Using an unencrypted connection may expose sensitive data."
-          />
-        </div>
-      </div>
-
-      <!-- Divider -->
-      <v-divider />
-
-      <!-- Footer Section -->
-      <div class="d-flex py-4 px-6">
-        <v-btn variant="text" color="secondary" text="Cancel" />
-        <v-spacer />
-        <v-btn color="primary" variant="flat" text="Retry Connection" />
-      </div>
-
-    </v-card>
-  </div>
+      <v-alert
+        rounded="small"
+        type="warning"
+        variant="outlined"
+        title="Security Warning"
+        text="Using an unencrypted connection may expose sensitive data."
+      />
+    </div>
+  </ProcessCard>
 </template>
 
 <script setup lang="ts">
-// Your component logic here
+import { ProcessCard } from '@/components'
+
+const handleCancel = () => {
+  console.log('Cancel clicked')
+}
+
+const handleRetry = () => {
+  console.log('Retry connection')
+}
 <\/script>`
 
 // Simple syntax highlighter function

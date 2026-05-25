@@ -394,6 +394,28 @@ const resetAlerts = () => {
     showAlert2.value = true
 }
 
+// Simple syntax highlighter function
+const highlightCode = (code: string): string => {
+  return code
+    // Strings first (to avoid conflicts)
+    .replace(/"([^"]*)"/g, '"<span class="string">$1</span>"')
+    .replace(/'([^']*)'/g, '\'<span class="string">$1</span>\'')
+    .replace(/`([^`]*)`/g, '`<span class="template">$1</span>`')
+    // HTML tags (without creating nested spans)
+    .replace(/&lt;(\/?[a-zA-Z][\w-]*)/g, '&lt;<span class="tag">$1</span>')
+    .replace(/&gt;/g, '<span class="tag">&gt;</span>')
+    // Vue directives and props (only if not already in a span)
+    .replace(/([:@][\w-]+)(?![^<]*<\/span>)/g, '<span class="directive">$1</span>')
+    // JavaScript keywords
+    .replace(/\b(import|export|const|let|var|function|from|interface|type|true|false|null|undefined)\b/g, '<span class="keyword">$1</span>')
+    // Comments
+    .replace(/(\/\/.*)/g, '<span class="comment">$1</span>')
+    // Numbers
+    .replace(/\b(\d+)\b/g, '<span class="number">$1</span>')
+    // Types and interfaces
+    .replace(/\b([A-Z][a-zA-Z]+)\b/g, '<span class="type">$1</span>')
+}
+
 // Code examples
 const basicCodeExample = `<!-- Type-based alerts -->
 <v-alert type="success">
@@ -532,37 +554,37 @@ const densityCodeExample = `<v-alert type="info" density="default">
 </v-alert>`
 
 // Computed properties for syntax highlighting
-const highlightedBasicCode = computed(() =>
-    basicCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedBasicCode = computed(() => {
+  return highlightCode(basicCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedTitleCode = computed(() =>
-    titleCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedTitleCode = computed(() => {
+  return highlightCode(titleCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedIconCode = computed(() =>
-    iconCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedIconCode = computed(() => {
+  return highlightCode(iconCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedDismissibleCode = computed(() =>
-    dismissibleCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedDismissibleCode = computed(() => {
+  return highlightCode(dismissibleCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedVariantCode = computed(() =>
-    variantCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedVariantCode = computed(() => {
+  return highlightCode(variantCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedBorderCode = computed(() =>
-    borderCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedBorderCode = computed(() => {
+  return highlightCode(borderCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedProminentCode = computed(() =>
-    prominentCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedProminentCode = computed(() => {
+  return highlightCode(prominentCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedDensityCode = computed(() =>
-    densityCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedDensityCode = computed(() => {
+  return highlightCode(densityCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 </script>
 
 <style scoped>

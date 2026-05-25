@@ -1056,42 +1056,65 @@ import { getIconName } from '@/helpers/icon'
   - getIconName adds '$' prefix automatically ($aws, $gcp, $azure)
 -->`
 
+// Simple syntax highlighter function
+const highlightCode = (code: string): string => {
+  return code
+    // Strings first (to avoid conflicts)
+    .replace(/"([^"]*)"/g, '"<span class="string">$1</span>"')
+    .replace(/'([^']*)'/g, '\'<span class="string">$1</span>\'')
+    .replace(/`([^`]*)`/g, '`<span class="template">$1</span>`')
+    // HTML tags (without creating nested spans)
+    .replace(/&lt;(\/?[a-zA-Z][\w-]*)/g, '&lt;<span class="tag">$1</span>')
+    .replace(/&gt;/g, '<span class="tag">&gt;</span>')
+    // Vue directives and props (only if not already in a span)
+    .replace(/([:@][\w-]+)(?![^<]*<\/span>)/g, '<span class="directive">$1</span>')
+    // JavaScript keywords
+    .replace(/\b(import|export|const|let|var|function|from|interface|type|true|false|null|undefined)\b/g, '<span class="keyword">$1</span>')
+    // Comments
+    .replace(/(\/\/.*)/g, '<span class="comment">$1</span>')
+    .replace(/(&lt;!--.*?--&gt;)/g, '<span class="comment">$1</span>')
+    // Numbers
+    .replace(/\b(\d+)\b/g, '<span class="number">$1</span>')
+    // Types and interfaces
+    .replace(/\b([A-Z][a-zA-Z]+)\b/g, '<span class="type">$1</span>')
+}
+
 // Computed highlighted code
-const highlightedAlignmentCode = computed(() =>
-  alignmentCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedAlignmentCode = computed(() => {
+  return highlightCode(alignmentCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedWidthCode = computed(() =>
-  widthCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedWidthCode = computed(() => {
+  return highlightCode(widthCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedChipCode = computed(() =>
-  chipCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedChipCode = computed(() => {
+  return highlightCode(chipCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedPattern0Code = computed(() =>
-  pattern0CodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedPattern0Code = computed(() => {
+  return highlightCode(pattern0CodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedPattern1Code = computed(() =>
-  pattern1CodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedPattern1Code = computed(() => {
+  return highlightCode(pattern1CodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedPattern2Code = computed(() =>
-  pattern2CodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedPattern2Code = computed(() => {
+  return highlightCode(pattern2CodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedPattern3Code = computed(() =>
-  pattern3CodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedPattern3Code = computed(() => {
+  return highlightCode(pattern3CodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedPercentageCode = computed(() =>
-  percentageCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedPercentageCode = computed(() => {
+  return highlightCode(percentageCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedProviderCode = computed(() =>
-  providerCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedProviderCode = computed(() => {
+  return highlightCode(providerCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 </script>
 
 <style scoped>

@@ -567,6 +567,28 @@ const resetCloseBanners = () => {
     showBanner5.value = true
 }
 
+// Simple syntax highlighter function
+const highlightCode = (code: string): string => {
+  return code
+    // Strings first (to avoid conflicts)
+    .replace(/"([^"]*)"/g, '"<span class="string">$1</span>"')
+    .replace(/'([^']*)'/g, '\'<span class="string">$1</span>\'')
+    .replace(/`([^`]*)`/g, '`<span class="template">$1</span>`')
+    // HTML tags (without creating nested spans)
+    .replace(/&lt;(\/?[a-zA-Z][\w-]*)/g, '&lt;<span class="tag">$1</span>')
+    .replace(/&gt;/g, '<span class="tag">&gt;</span>')
+    // Vue directives and props (only if not already in a span)
+    .replace(/([:@][\w-]+)(?![^<]*<\/span>)/g, '<span class="directive">$1</span>')
+    // JavaScript keywords
+    .replace(/\b(import|export|const|let|var|function|from|interface|type|true|false|null|undefined)\b/g, '<span class="keyword">$1</span>')
+    // Comments
+    .replace(/(\/\/.*)/g, '<span class="comment">$1</span>')
+    // Numbers
+    .replace(/\b(\d+)\b/g, '<span class="number">$1</span>')
+    // Types and interfaces
+    .replace(/\b([A-Z][a-zA-Z]+)\b/g, '<span class="type">$1</span>')
+}
+
 // Code examples
 const basicCodeExample = `<v-banner>
   <v-banner-text>
@@ -781,45 +803,45 @@ const mobileCodeExample = `<v-banner icon="mdi-cellphone" color="info">
 </v-banner>`
 
 // Computed properties for syntax highlighting
-const highlightedBasicCode = computed(() =>
-    basicCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedBasicCode = computed(() => {
+  return highlightCode(basicCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedLayoutCode = computed(() =>
-    layoutCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedLayoutCode = computed(() => {
+  return highlightCode(layoutCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedIconCode = computed(() =>
-    iconCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedIconCode = computed(() => {
+  return highlightCode(iconCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedActionsCode = computed(() =>
-    actionsCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedActionsCode = computed(() => {
+  return highlightCode(actionsCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedCloseIconCode = computed(() =>
-    closeIconCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedCloseIconCode = computed(() => {
+  return highlightCode(closeIconCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedStickyCode = computed(() =>
-    stickyCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedStickyCode = computed(() => {
+  return highlightCode(stickyCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedMultilineCode = computed(() =>
-    multilineCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedMultilineCode = computed(() => {
+  return highlightCode(multilineCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedColorCode = computed(() =>
-    colorCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedColorCode = computed(() => {
+  return highlightCode(colorCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedDismissibleCode = computed(() =>
-    dismissibleCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedDismissibleCode = computed(() => {
+  return highlightCode(dismissibleCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedMobileCode = computed(() =>
-    mobileCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedMobileCode = computed(() => {
+  return highlightCode(mobileCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 </script>
 
 <style scoped>
