@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb-8">
-      <h1 class="text-h4 font-weight-bold mb-4">Custom List Item</h1>
+      <h1 class="text-h4 font-weight-bold mb-4">Advance List Item</h1>
       <p class="text-body-1 mb-6">
         A unified, configurable list item component that replaces multiple specific list item variations.
         This component can be configured to handle any list pattern through a single configuration object.
@@ -12,14 +12,14 @@
     <div class="mb-8">
       <h2 class="text-h5 font-weight-medium mb-4">All Features Enabled</h2>
       <p class="text-body-2 mb-4 text-medium-emphasis">
-        This example demonstrates every available feature of the CustomListItem component in a single configuration.
+        This example demonstrates every available feature of the AdvanceListItem component in a single configuration.
       </p>
 
       <!-- Live Example -->
       <v-card class="mb-4">
         <v-card-text>
           <v-list>
-            <CustomListItem
+            <AdvanceListItem
               :config="allFeaturesConfig"
               value="all-features-demo"
               @click="handleClick"
@@ -61,15 +61,15 @@
       <v-card class="mb-4">
         <v-card-text>
           <v-list>
-            <CustomListItem
+            <AdvanceListItem
               :config="normalStateConfig"
               @click="handleClick"
             />
-            <CustomListItem
+            <AdvanceListItem
               :config="activeStateConfig"
               @click="handleClick"
             />
-            <CustomListItem
+            <AdvanceListItem
               :config="selectedStateConfig"
               @click="handleClick"
             />
@@ -110,7 +110,7 @@
       <v-card class="mb-4">
         <v-card-text>
           <v-list>
-            <CustomListItem
+            <AdvanceListItem
               :config="basicConfig"
               @click="handleClick"
             />
@@ -151,7 +151,7 @@
       <v-card class="mb-4">
         <v-card-text>
           <v-list>
-            <CustomListItem
+            <AdvanceListItem
               :config="avatarConfig"
               @click="handleClick"
             />
@@ -192,7 +192,7 @@
       <v-card class="mb-4">
         <v-card-text>
           <v-list>
-            <CustomListItem
+            <AdvanceListItem
               :config="chipConfig"
               @click="handleClick"
             />
@@ -233,7 +233,7 @@
       <v-card class="mb-4">
         <v-card-text>
           <v-list>
-            <CustomListItem
+            <AdvanceListItem
               :config="metadataConfig"
               @click="handleClick"
             />
@@ -274,7 +274,7 @@
       <v-card class="mb-4">
         <v-card-text>
           <v-list>
-            <CustomListItem
+            <AdvanceListItem
               :config="menuConfig"
               @click="handleClick"
               @menuAction="handleMenuAction"
@@ -316,7 +316,7 @@
       <v-card class="mb-4">
         <v-card-text>
           <v-list>
-            <CustomListItem
+            <AdvanceListItem
               v-for="(config, index) in fullExamples"
               :key="index"
               :config="config"
@@ -363,7 +363,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { CustomListItem } from '@/components'
+import { AdvanceListItem } from '@/components'
 
 // Code visibility toggles
 const showAllFeaturesCode = ref(false)
@@ -738,7 +738,7 @@ const handleMenuAction = (actionTitle: string, value: any) => {
 // Code examples for display
 const allFeaturesCodeExample = `<template>
   <v-list>
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         showAvatar: true,
         avatarType: 'provider',
@@ -800,7 +800,7 @@ const allFeaturesCodeExample = `<template>
 </template>
 
 <script setup lang="ts">
-import { CustomListItem } from '@/components'
+import { AdvanceListItem } from '@/components'
 
 const handleClick = (value: any) => {
   console.log('Clicked:', value)
@@ -814,7 +814,7 @@ const handleMenuAction = (actionTitle: string, value: any) => {
 const activeStatesCodeExample = `<template>
   <v-list>
     <!-- Normal State -->
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         showAvatar: true,
         avatarType: 'user',
@@ -835,7 +835,7 @@ const activeStatesCodeExample = `<template>
     />
 
     <!-- Active State -->
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         showAvatar: true,
         avatarType: 'user',
@@ -856,7 +856,7 @@ const activeStatesCodeExample = `<template>
     />
 
     <!-- Selected State -->
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         showAvatar: true,
         avatarType: 'icon',
@@ -885,7 +885,7 @@ const activeStatesCodeExample = `<template>
 </template>
 
 <script setup lang="ts">
-import { CustomListItem } from '@/components'
+import { AdvanceListItem } from '@/components'
 
 const handleClick = (value: any) => {
   console.log('Clicked:', value)
@@ -894,7 +894,7 @@ const handleClick = (value: any) => {
 
 const basicCodeExample = `<template>
   <v-list>
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         title: 'Basic List Item',
         subtitle: 'Simple list item with title and subtitle'
@@ -905,7 +905,7 @@ const basicCodeExample = `<template>
 </template>
 
 <script setup lang="ts">
-import { CustomListItem } from '@/components'
+import { AdvanceListItem } from '@/components'
 
 const handleClick = (value: any) => {
   console.log('Clicked:', value)
@@ -914,7 +914,7 @@ const handleClick = (value: any) => {
 
 const avatarCodeExample = `<template>
   <v-list>
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         showAvatar: true,
         avatarType: 'user',
@@ -929,7 +929,7 @@ const avatarCodeExample = `<template>
 </template>
 
 <script setup lang="ts">
-import { CustomListItem } from '@/components'
+import { AdvanceListItem } from '@/components'
 
 const handleClick = (value: any) => {
   console.log('Clicked:', value)
@@ -938,7 +938,7 @@ const handleClick = (value: any) => {
 
 const chipCodeExample = `<template>
   <v-list>
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         title: 'AWS Production Account',
         subtitle: 'Primary production environment',
@@ -955,7 +955,7 @@ const chipCodeExample = `<template>
 </template>
 
 <script setup lang="ts">
-import { CustomListItem } from '@/components'
+import { AdvanceListItem } from '@/components'
 
 const handleClick = (value: any) => {
   console.log('Clicked:', value)
@@ -964,7 +964,7 @@ const handleClick = (value: any) => {
 
 const metadataCodeExample = `<template>
   <v-list>
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         showAvatar: true,
         avatarType: 'icon',
@@ -980,7 +980,7 @@ const metadataCodeExample = `<template>
 </template>
 
 <script setup lang="ts">
-import { CustomListItem } from '@/components'
+import { AdvanceListItem } from '@/components'
 
 const handleClick = (value: any) => {
   console.log('Clicked:', value)
@@ -989,7 +989,7 @@ const handleClick = (value: any) => {
 
 const menuCodeExample = `<template>
   <v-list>
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         title: 'User Account',
         subtitle: 'Administrator access',
@@ -1014,7 +1014,7 @@ const menuCodeExample = `<template>
 </template>
 
 <script setup lang="ts">
-import { CustomListItem } from '@/components'
+import { AdvanceListItem } from '@/components'
 
 const handleClick = (value: any) => {
   console.log('Clicked:', value)
@@ -1028,7 +1028,7 @@ const handleMenuAction = (actionTitle: string, value: any) => {
 const fullExamplesCodeExample = `<template>
   <v-list>
     <!-- AWS Provider Example -->
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         showAvatar: true,
         avatarType: 'provider',
@@ -1063,7 +1063,7 @@ const fullExamplesCodeExample = `<template>
     />
 
     <!-- User Example -->
-    <CustomListItem
+    <AdvanceListItem
       :config="{
         showAvatar: true,
         avatarType: 'user',
@@ -1101,7 +1101,7 @@ const fullExamplesCodeExample = `<template>
 </template>
 
 <script setup lang="ts">
-import { CustomListItem } from '@/components'
+import { AdvanceListItem } from '@/components'
 
 const handleClick = (value: any) => {
   console.log('Clicked:', value)

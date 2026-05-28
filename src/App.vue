@@ -75,6 +75,21 @@
           color="primary"
         />
 
+        <!-- Audit Section (Temporary) -->
+        <v-list-subheader class="text-uppercase text-caption font-weight-bold text-medium-emphasis mb-2 mt-6">
+          Audits
+        </v-list-subheader>
+
+        <v-list-item
+          v-for="item in auditItems"
+          :key="item.path"
+          :to="item.path"
+          :title="item.title"
+          :prepend-icon="item.icon"
+          class="mb-1 rounded-lg"
+          color="primary"
+        />
+
         <!-- Resources Section -->
         <v-list-subheader class="text-uppercase text-caption font-weight-bold text-medium-emphasis mb-2 mt-6">
           Resources
@@ -142,19 +157,62 @@ const foundationsItems = [
 
 const componentItems = [
   {
-    title: 'Custom List Item',
-    path: '/components/custom-list-item',
+    title: 'Advance List Item',
+    path: '/components/advance-list-item',
     icon: 'mdi-format-list-bulleted'
   },
   {
     title: 'Chip',
     path: '/components/chips',
-    icon: 'mdi-format-list-bulleted'
+    icon: 'mdi-label-outline'
   },
   {
     title: 'Dialog',
     path: '/components/dialog',
-    icon: 'mdi-format-list-bulleted'
+    icon: 'mdi-window-maximize'
+  },
+  {
+    title: 'Alerts',
+    path: '/components/alerts',
+    icon: 'mdi-alert-circle-outline'
+  },
+  {
+    title: 'Banners',
+    path: '/components/banners',
+    icon: 'mdi-message-alert-outline'
+  },
+  {
+    title: 'Cards',
+    path: '/components/cards',
+    icon: 'mdi-card-outline'
+  },
+  {
+    title: 'Card Patterns',
+    path: '/components/card-patterns',
+    icon: 'mdi-view-grid-outline'
+  },
+  {
+    title: 'Card Templates',
+    path: '/components/card-templates',
+    icon: 'mdi-file-document-outline'
+  },
+  {
+    title: 'Tables',
+    path: '/components/tables',
+    icon: 'mdi-table'
+  }
+]
+
+const auditItems = [
+  {
+    title: 'Color Audit',
+    path: '/audit/colors',
+    icon: 'mdi-palette-swatch-variant'
+  },
+  {
+    title: 'Typography Audit',
+    path: '/audit/typography',
+    icon: 'mdi-format-size'
   }
 ]
 

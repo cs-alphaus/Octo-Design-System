@@ -255,6 +255,28 @@ const selectedProviders = ref<string[]>([])
 const selectedPriority = ref('medium')
 const selectedStatus = ref<string | null>(null)
 
+// Simple syntax highlighter function
+const highlightCode = (code: string): string => {
+  return code
+    // Strings first (to avoid conflicts)
+    .replace(/"([^"]*)"/g, '"<span class="string">$1</span>"')
+    .replace(/'([^']*)'/g, '\'<span class="string">$1</span>\'')
+    .replace(/`([^`]*)`/g, '`<span class="template">$1</span>`')
+    // HTML tags (without creating nested spans)
+    .replace(/&lt;(\/?[a-zA-Z][\w-]*)/g, '&lt;<span class="tag">$1</span>')
+    .replace(/&gt;/g, '<span class="tag">&gt;</span>')
+    // Vue directives and props (only if not already in a span)
+    .replace(/([:@][\w-]+)(?![^<]*<\/span>)/g, '<span class="directive">$1</span>')
+    // JavaScript keywords
+    .replace(/\b(import|export|const|let|var|function|from|interface|type|true|false|null|undefined)\b/g, '<span class="keyword">$1</span>')
+    // Comments
+    .replace(/(\/\/.*)/g, '<span class="comment">$1</span>')
+    // Numbers
+    .replace(/\b(\d+)\b/g, '<span class="number">$1</span>')
+    // Types and interfaces
+    .replace(/\b([A-Z][a-zA-Z]+)\b/g, '<span class="type">$1</span>')
+}
+
 // Code examples with proper formatting
 const displayCodeExample = `<!-- Colors -->
 <v-chip-group>
@@ -325,18 +347,18 @@ import { ref } from 'vue'
 const selectedPriority = ref('medium')
 <\/script>`
 
-// Simple computed properties that just return escaped HTML
-const highlightedDisplayCode = computed(() =>
-    displayCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+// Computed properties for syntax highlighting
+const highlightedDisplayCode = computed(() => {
+  return highlightCode(displayCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedMultiSelectionCode = computed(() =>
-    multiSelectionCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedMultiSelectionCode = computed(() => {
+  return highlightCode(multiSelectionCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 
-const highlightedSingleSelectionCode = computed(() =>
-    singleSelectionCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-)
+const highlightedSingleSelectionCode = computed(() => {
+  return highlightCode(singleSelectionCodeExample.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+})
 </script>
 
 <style scoped>

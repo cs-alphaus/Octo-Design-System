@@ -30,19 +30,19 @@ const sizeProps = computed(() => {
       return {
         avatarSize: 48,
         iconSize: 36,
-        textSize: 'text-xl'
+        textSize: 'text-lg'
       }
     case 'x-large':
       return {
         avatarSize: 64,
         iconSize: 48,
-        textSize: 'text-xxl'
+        textSize: 'text-xl'
       }
     default:
       return {
         avatarSize: 40,
         iconSize: 28,
-        textSize: 'text-xl'
+        textSize: 'text-lg'
       }
   }
 })

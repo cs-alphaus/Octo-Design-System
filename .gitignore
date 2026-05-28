@@ -30,3 +30,9 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Reference and migration documentation
+COLOR_MIGRATION_SUMMARY.md
+QUICK_START_TABLES.md
+TABLE_MIGRATION_SUMMARY.md
+TYPOGRAPHY_ISSUES_REFERENCE.md

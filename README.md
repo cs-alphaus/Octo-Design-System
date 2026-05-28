@@ -31,6 +31,16 @@ Standardized dialog component with:
 - Configurable toolbar and actions
 - Scrollable content support
 
+### Tables
+Comprehensive data table standards with:
+- Column alignment rules (numerical/actions/text)
+- Column width strategy (hugging vs. filling)
+- 4 action button patterns (clickable name, text button, icon buttons, menu)
+- Percentage change pattern with icon + colored text
+- Provider/vendor icon pattern with theme-aware colors
+- Status chips sizing and variants
+- Formatting standards (2 decimal places for percentages)
+
 ## Design Tokens
 
 ### Colors

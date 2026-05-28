@@ -19,10 +19,11 @@ import { getIconName } from '@/helpers/icon'
  * Configuration for status chips
  * Supports single chip or array of chips with different colors/variants
  */
-interface ChipConfig {
+export interface ChipConfig {
   text: string
   color?: string
   variant?: 'flat' | 'tonal' | 'outlined' | 'text' | 'elevated'
+  size?: 'x-small' | 'small' | 'default' | 'large' | 'x-large'
 }
 
 
@@ -30,7 +31,7 @@ interface ChipConfig {
  * Configuration for action menu items
  * Each action has a title, optional icon, and callback function
  */
-interface MenuAction {
+export interface MenuAction {
   title: string
   icon?: string
   action: () => void
@@ -40,7 +41,7 @@ interface MenuAction {
  * Main configuration interface
  * Controls all aspects of the list item appearance and behavior
  */
-interface ListItemConfig {
+export interface ListItemConfig {
   // Avatar/Icon Configuration
   showAvatar?: boolean                    // Toggle avatar display
   avatarType?: 'provider' | 'user' | 'icon'  // Type determines rendering method
@@ -126,16 +127,14 @@ const titleChipArray = computed(() => {
 })
 
 /**
- * Creates formatted metadata string from array
- * Filters out empty/null values and joins with dots
+ * Creates array of metadata items for rendering
+ * Filters out empty/null values
  */
-const formattedMetadata = computed(() => {
-  if (!props.config.showMetadata || !props.config.metadataItems) return ''
+const metadataItemsFiltered = computed(() => {
+  if (!props.config.showMetadata || !props.config.metadataItems) return []
 
-  // Filter out empty/null/undefined values and join with dots
-  return props.config.metadataItems
-    .filter(item => item && item.trim() !== '')
-    .join(' • ')
+  // Filter out empty/null/undefined values
+  return props.config.metadataItems.filter(item => item && item.trim() !== '')
 })
 
 // =============================================================================
@@ -177,7 +176,7 @@ const handleMenuAction = (action: MenuAction) => {
       <v-list-item
         :value="value"
         :active="config.active"
-        :height="config.showMetadata ? 80 : 64"
+        :height="80"
         class="py-4"
         @click="handleClick"
       >
@@ -188,6 +187,7 @@ const handleMenuAction = (action: MenuAction) => {
           <!-- Provider Avatar: Used for AWS/GCP/Azure accounts -->
           <CustomAvatar
             v-if="config.avatarType === 'provider'"
+            :icon="config.avatarIcon"
             :image="config.avatarSrc"
             :initial="config.avatarText"
             :color="config.avatarColor"
@@ -232,8 +232,8 @@ const handleMenuAction = (action: MenuAction) => {
                 :variant="titleChipArray[0].variant || 'tonal'"
                 size="x-small"
                 rounded="lg"
-                class="mr-1"
-                style="height: 20px; font-size: 11px;"
+                class="mr-1 text-xs"
+                style="height: 20px;"
               >
                 {{ titleChipArray[0].text }}
               </v-chip>
@@ -246,7 +246,8 @@ const handleMenuAction = (action: MenuAction) => {
                 :variant="chip.variant || 'outlined'"
                 size="x-small"
                 rounded="lg"
-                style="height: 20px; font-size: 11px;"
+                class="text-xs"
+                style="height: 20px;"
               >
                 {{ chip.text }}
               </v-chip>
@@ -260,10 +261,13 @@ const handleMenuAction = (action: MenuAction) => {
 
         <!-- Tertiary metadata line (ID • Region • Type, etc.) -->
         <div
-          v-if="config.showMetadata && formattedMetadata"
-          class="text-caption text-medium-emphasis mt-1"
+          v-if="config.showMetadata && metadataItemsFiltered.length"
+          class="text-xs text-medium-emphasis mt-1 d-flex align-center ga-2"
         >
-          {{ formattedMetadata }}
+          <template v-for="(item, index) in metadataItemsFiltered" :key="index">
+            <span>{{ item }}</span>
+            <span v-if="index < metadataItemsFiltered.length - 1" class="text-disabled">•</span>
+          </template>
         </div>
 
         <!-- ================================ -->
@@ -277,10 +281,9 @@ const handleMenuAction = (action: MenuAction) => {
               :key="index"
               :color="chip.color || 'primary'"
               :variant="chip.variant || 'tonal'"
-              size="small"
+              :size="chip.size || 'small'"
               rounded="lg"
               class="mr-2"
-              style="height: 20px;"
             >
               {{ chip.text }}
             </v-chip>
@@ -339,6 +342,7 @@ const handleMenuAction = (action: MenuAction) => {
         <!-- Provider Avatar -->
         <CustomAvatar
           v-if="config.avatarType === 'provider'"
+          :icon="config.avatarIcon"
           :image="config.avatarSrc"
           :initial="config.avatarText"
           :color="config.avatarColor"
@@ -409,10 +413,13 @@ const handleMenuAction = (action: MenuAction) => {
 
       <!-- Tertiary metadata line (ID • Region • Type, etc.) -->
       <div
-        v-if="config.showMetadata && formattedMetadata"
-        class="text-caption text-medium-emphasis mt-1"
+        v-if="config.showMetadata && metadataItemsFiltered.length"
+        class="text-xs text-medium-emphasis mt-1 d-flex align-center ga-2"
       >
-        {{ formattedMetadata }}
+        <template v-for="(item, index) in metadataItemsFiltered" :key="index">
+          <span>{{ item }}</span>
+          <span v-if="index < metadataItemsFiltered.length - 1" class="text-disabled">•</span>
+        </template>
       </div>
 
       <!-- RIGHT SIDE: Status & Actions -->
@@ -424,7 +431,7 @@ const handleMenuAction = (action: MenuAction) => {
             :key="index"
             :color="chip.color || 'primary'"
             :variant="chip.variant || 'tonal'"
-            size="default"
+            :size="chip.size || 'default'"
             rounded="lg"
             class="mr-2"
           >
